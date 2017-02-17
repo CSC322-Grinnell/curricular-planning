@@ -9,6 +9,12 @@
 * Corey
 * Prabir
 
+## Setup Instructions
+1. Clone this repository.
+2. `cd` into the repository
+3. `bundle install` to install Gem dependencies
+4. `rails s` to start server
+
 ## Info
 
 * Ruby version `Rails 4.1.8`
