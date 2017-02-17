@@ -3,36 +3,36 @@
 ## Models
 
 ### Student
-* name : nametype
-* password : hashed string
-* graduating_year : integer
-* advisor : Professor
-* courses_planned : [Offering]
+* `name` : nametype
+* `password` : hashed string
+* `graduating_year` : integer
+* `advisor` : Professor
+* `courses_planned` : [Offering]
 
 ### Professor
-* name : nametype
-* password : hashed string
-* advisees : [Student]
-* teaches : [Offering]
+* `name` : nametype
+* `password` : hashed string
+* `advisees` : [Student]
+* `teaches` : [Offering]
 
 ### Semester
-* academic_year : string
-* semester : string (ex. fall or spring)
-* courses_offered: [Offering]
+* `academic_year` : string
+* `semester` : string (ex. fall or spring)
+* `courses_offered`: [Offering]
 
-### Course
-* number : integer/string
-* title : string
-* description : string
-* required : string
-* offerings : [Offering]
+##`#` Course
+* `number` : integer/string
+* `title` : string
+* `description` : string
+* `required` : string
+* `offerings` : [Offering]
 
 ### Offering
-* course : Course
-* professor : Professor
-* time : string
-* semester : Semester
-* students_planned : [Student]
+* `course` : Course
+* `professor` : Professor
+* `time` : string
+* `semester` : Semester
+* `students_planned` : [Student]
 
 ## Relationships
 
