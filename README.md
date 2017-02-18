@@ -5,7 +5,7 @@
 ## Authors
 
 * Alex
-* Mari 
+* Mari
 * Jonathan
 * Otabek
 * Corey
