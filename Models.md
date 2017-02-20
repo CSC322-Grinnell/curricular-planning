@@ -1,19 +1,6 @@
 # CS Curricular Planning Data Modeling
 
-## Models
-
-### Student
-* `name` : nametype
-* `password` : hashed string
-* `graduating_year` : integer
-* `advisor` : Professor
-* `courses_planned` : [Offering]
-
-### Professor
-* `name` : nametype
-* `password` : hashed string
-* `advisees` : [Student]
-* `teaches` : [Offering]
+## Course Models
 
 ### Semester
 * `academic_year` : string
@@ -34,6 +21,23 @@
 * `time` : string
 * `semester` : Semester
 * `students_planned` : [Student]
+* `capacity` : integer
+
+
+## Other Possible Models
+
+### Student
+* `name` : nametype
+* `password` : hashed string
+* `graduating_year` : integer
+* `advisor` : Professor
+* `courses_planned` : [Offering]
+
+### Professor
+* `name` : nametype
+* `password` : hashed string
+* `advisees` : [Student]
+* `teaches` : [Offering]
 
 ## Relationships
 
