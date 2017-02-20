@@ -20,7 +20,7 @@
 * `semester` : string (ex. fall or spring)
 * `courses_offered`: [Offering]
 
-##`#` Course
+### Course
 * `number` : integer/string
 * `title` : string
 * `description` : string
