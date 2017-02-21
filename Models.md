@@ -8,11 +8,10 @@
 * `courses_offered`: [Offering]
 
 ### Course
-* `number` : integer/string
 * `course_id` : string (ex. "TUT 100" / "CSC 151")
 * `title` : string
 * `description` : string
-* `required` : string
+* `required` : boolean
 * `offerings` : [Offering]
 
 ### Offering
@@ -22,7 +21,6 @@
 * `semester` : Semester
 * `students_planned` : [Student]
 * `capacity` : integer
-
 
 ## Other Possible Models
 
