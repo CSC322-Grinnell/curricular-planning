@@ -3,7 +3,6 @@ class CreateOfferings < ActiveRecord::Migration
     create_table :offerings do |t|
       t.string :professor
       t.string :time
-      t.string :semester
       t.integer :capacity
 
       t.timestamps null: false
