@@ -4,7 +4,7 @@ class CreateCourses < ActiveRecord::Migration
       t.string :course_id
       t.string :title
       t.text :description
-      t.boolean :requred
+      t.boolean :required
 
       t.timestamps null: false
     end

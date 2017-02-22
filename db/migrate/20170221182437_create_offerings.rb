@@ -4,7 +4,7 @@ class CreateOfferings < ActiveRecord::Migration
       t.string :professor
       t.string :time
       t.integer :capacity
-      t.belongs_to :offering, index: true
+      t.belongs_to :course, index: true
       t.belongs_to :semester, index: true
 
       t.timestamps null: false

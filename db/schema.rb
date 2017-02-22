@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170221182437) do
     t.string   "course_id"
     t.string   "title"
     t.text     "description"
-    t.boolean  "requred"
+    t.boolean  "required"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
@@ -26,13 +26,13 @@ ActiveRecord::Schema.define(version: 20170221182437) do
     t.string   "professor"
     t.string   "time"
     t.integer  "capacity"
-    t.integer  "offering_id"
+    t.integer  "course_id"
     t.integer  "semester_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "offerings", ["offering_id"], name: "index_offerings_on_offering_id"
+  add_index "offerings", ["course_id"], name: "index_offerings_on_course_id"
   add_index "offerings", ["semester_id"], name: "index_offerings_on_semester_id"
 
   create_table "semesters", force: true do |t|
