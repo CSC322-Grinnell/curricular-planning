@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20170221182437) do
 
   create_table "semesters", force: true do |t|
     t.string   "academic_year"
-    t.string   "semester"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.string   "academic_semester"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end
