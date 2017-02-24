@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  professor: MyString
+  time: MyString
+  semester: MyString
+  capacity: 1
+
+two:
+  professor: MyString
+  time: MyString
+  semester: MyString
+  capacity: 1

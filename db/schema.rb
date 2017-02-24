@@ -13,6 +13,35 @@
 
 ActiveRecord::Schema.define(version: 20170222014213) do
 
+  create_table "courses", force: true do |t|
+    t.string   "course_id"
+    t.string   "title"
+    t.text     "description"
+    t.boolean  "required"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "offerings", force: true do |t|
+    t.string   "professor"
+    t.string   "time"
+    t.integer  "capacity"
+    t.integer  "course_id"
+    t.integer  "semester_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "offerings", ["course_id"], name: "index_offerings_on_course_id"
+  add_index "offerings", ["semester_id"], name: "index_offerings_on_semester_id"
+
+  create_table "semesters", force: true do |t|
+    t.string   "academic_year"
+    t.string   "academic_semester"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

@@ -4,7 +4,7 @@
 
 ### Semester
 * `academic_year` : string
-* `semester` : string (ex. fall or spring)
+* `academic_semester` : string (ex. fall or spring)
 * `courses_offered`: [Offering]
 
 ### Course
