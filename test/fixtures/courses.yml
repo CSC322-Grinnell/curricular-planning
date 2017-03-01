@@ -4,10 +4,10 @@ one:
   course_id: MyString
   title: MyString
   description: MyText
-  requred: false
+  required: false
 
 two:
   course_id: MyString
   title: MyString
   description: MyText
-  requred: false
+  required: false
