@@ -1,13 +1,21 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  professor: MyString
-  time: MyString
-  semester: MyString
-  capacity: 1
+  professor: "PM"
+  time: "14:00 MWF"
+  capacity: 17
 
 two:
-  professor: MyString
-  time: MyString
-  semester: MyString
-  capacity: 1
+  professor: "Sam"
+  time: "12:00 MWF"
+  capacity: 16
+
+three:
+  professor: "Titus"
+  time: "13:00 MWF"
+  capacity: 19
+
+four:
+  professor: "Titus"
+  time: "15:00 MWF"
+  capacity: 19
