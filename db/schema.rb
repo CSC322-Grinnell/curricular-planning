@@ -14,12 +14,12 @@
 ActiveRecord::Schema.define(version: 20170222014213) do
 
   create_table "courses", force: true do |t|
-    t.string   "course_id"
+    t.string   "course_number"
     t.string   "title"
     t.text     "description"
     t.boolean  "required"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "offerings", force: true do |t|
@@ -37,9 +37,9 @@ ActiveRecord::Schema.define(version: 20170222014213) do
 
   create_table "semesters", force: true do |t|
     t.string   "academic_year"
-    t.string   "academic_semester"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "academic_term"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: true do |t|
