@@ -1,7 +1,8 @@
 require 'test_helper'
+require 'minitest/autorun'
 
-class SemesterTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class SemesterTest < Minitest::Test
+  def test_test
+    assert true
+  end
 end
