@@ -1,5 +1,7 @@
 /* -------------------------------- 
+
 Primary style
+
 -------------------------------- */
 
 html * {
@@ -25,11 +27,13 @@ a {
 }
 
 /* -------------------------------- 
+
 Modules - reusable parts of our design
+
 -------------------------------- */
 
 .cd-content {
-	//@include outer-container(100%);
+	@include outer-container(100%);
 }
 
 .cd-container {
@@ -38,7 +42,9 @@ Modules - reusable parts of our design
 }
 
 /* -------------------------------- 
+
 Main components 
+
 -------------------------------- */
 
 .cd-header {
@@ -241,3 +247,17 @@ Main components
 		}
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
