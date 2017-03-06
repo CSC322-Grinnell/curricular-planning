@@ -42,3 +42,17 @@ gem 'devise'
 # gem 'debugger', group: [:development, :test]
 
 gem 'minitest'
+
+# design elements
+gem "font-awesome-rails"
+gem 'bourbon'
+gem 'neat'
+gem 'refills'
+gem "normalize-rails"
+
+group :development, :test do
+    
+    gem 'byebug'
+    gem 'web-console', '~> 2.0'
+    gem 'spring'
+end
