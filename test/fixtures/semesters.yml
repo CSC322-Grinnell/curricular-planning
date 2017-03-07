@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+fall:
   academic_year: "2017/2018"
   academic_term: "Fall"
 
-two:
+spring:
   academic_year: "2017/2018"
   academic_term: "Spring"
+
+summer:
+  academic_year: "2017/2018"
+  academic_term: "Summer"
