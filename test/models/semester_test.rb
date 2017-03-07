@@ -1,8 +1,8 @@
 require 'test_helper'
 require 'minitest/autorun'
 
-class SemesterTest < Minitest::Test
+class SemesterTest < ActiveSupport::TestCase
   def test_test
-    assert true
+    assert_equal 2, Semester.count
   end
 end

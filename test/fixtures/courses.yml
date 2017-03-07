@@ -1,13 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  course_name: "CSC 151"
-  title: "Functional"
-  description: "This is the intro course."
-  required: true
-
-two:
-  course_name: "CSC 161"
-  title: "Imperative"
-  description: "This is also an intro course."
-  required: true

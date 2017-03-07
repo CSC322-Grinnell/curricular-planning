@@ -42,3 +42,7 @@ gem 'devise'
 # gem 'debugger', group: [:development, :test]
 
 gem 'minitest'
+
+# Show a pretty report for minitest
+gem 'minitest-reporters'
+gem 'minitest-autotest'
