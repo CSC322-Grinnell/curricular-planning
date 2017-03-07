@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class CourseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def test_count
+   # assert_equal 2, Course.count
+  end
 end
