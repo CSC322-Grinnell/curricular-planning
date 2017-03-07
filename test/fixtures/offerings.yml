@@ -4,28 +4,40 @@ one:
   professor: "PM"
   time: "14:00 MWF"
   capacity: 17
+  semester: fall
+  course: csc151
 
 two:
   professor: "Sam"
   time: "12:00 MWF"
   capacity: 16
+  semester: spring
+  course: csc151
 
 three:
   professor: "Titus"
   time: "13:00 MWF"
   capacity: 19
+  semester: fall
+  course: csc161
 
 four:
   professor: "Titus"
   time: "15:00 MWF"
   capacity: 19
+  semester: fall
+  course: csc161
 
 five:
   professor: "PM"
   time: "14:00 MWF"
   capacity: 17
+  semester: spring
+  course: csc207
 
 six:
   professor: "Sam"
   time: "12:00 MWF"
   capacity: 16
+  semester: fall
+  course: csc499

@@ -12,40 +12,34 @@ class OfferingTest < ActiveSupport::TestCase
     end
   end
 
-  test "validity when saving new Offering" do
-    o = newValidOffering
+  test "validity when a field is missing" do
+    o = getValidOffering
     assert o.valid?
 
-    o = newValidOffering
+    o = getValidOffering
     o.professor= nil
     assert_not o.valid?
 
-    o = newValidOffering
+    o = getValidOffering
     o.time= nil
     assert_not o.valid?
 
-    o = newValidOffering
+    o = getValidOffering
     o.capacity= nil
     assert_not o.valid?
 
-    o = newValidOffering
+    o = getValidOffering
     o.semester= nil
     assert_not o.valid?
 
-    o = newValidOffering
+    o = getValidOffering
     o.course= nil
     assert_not o.valid?
 
   end
 
-  def newValidOffering
-    o = Offering.new
-    o.professor= "Professor"
-    o.time= "time"
-    o.capacity= 1
-    o.course_id= 1
-    o.semester_id= 1
-    return o
+  def getValidOffering
+    Offering.all[0]
   end
 
 end
