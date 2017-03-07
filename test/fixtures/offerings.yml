@@ -19,3 +19,13 @@ four:
   professor: "Titus"
   time: "15:00 MWF"
   capacity: 19
+
+five:
+  professor: "PM"
+  time: "14:00 MWF"
+  capacity: 17
+
+six:
+  professor: "Sam"
+  time: "12:00 MWF"
+  capacity: 16
