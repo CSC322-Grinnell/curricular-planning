@@ -1,0 +1,17 @@
+<% @semesters.each do |semester| %>
+  <table>
+    <caption><%= semester.academic_semester %> <%= semester.academic_year %></caption>
+    <tr>
+      <th>Class</th>
+      <th>Professor</th>
+      <th>Interest</th>
+    </tr>
+    <% semester.offering.each do |offering| %>
+      <tr>
+        <td><%= offering.course.course_id %></td>
+        <td><%= offering.professor %></td>
+        <td>x/<%= offering.capacity %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>
