@@ -1,6 +1,6 @@
 <% @semesters.each do |semester| %>
   <table>
-    <caption><%= semester.academic_semester %> <%= semester.academic_year %></caption>
+    <caption><%= semester.academic_term %> <%= semester.academic_year %></caption>
     <tr>
       <th>Class</th>
       <th>Professor</th>
@@ -21,5 +21,6 @@ New Semester
 <form method="POST">
   School Year: <input type="text" name="year"><br>
   Term: <input type="text" name="term"><br>
-  <input type="submit" name="action" value="newSemester">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <input type="submit" name="request" value="newSemester">
 </form>
