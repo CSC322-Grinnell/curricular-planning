@@ -10,7 +10,6 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter)
   
-  
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
