@@ -1,13 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+csc151:
+  course_number: "CSC 151"
+  title: "Functional"
+  description: "This is the intro course."
+  required: t
 
-one:
-  course_id: MyString
-  title: MyString
-  description: MyText
-  requred: false
+csc161:
+  course_number: "CSC 161"
+  title: "Imperative"
+  description: "This is another intro course."
+  required: t
 
-two:
-  course_id: MyString
-  title: MyString
-  description: MyText
-  requred: false
+csc207:
+  course_number: "CSC 207"
+  title: "OOP Data Structures"
+  description: "This is the final intro course."
+  required: t
+
+csc499:
+  course_number: "MAP"
+  title: "Mentored Advanced Project"
+  required: f
