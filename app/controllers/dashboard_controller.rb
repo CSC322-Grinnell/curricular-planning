@@ -4,7 +4,6 @@ class DashboardController < ApplicationController
   end
 
   def post
-    puts params
     if params[:request] == "newSemester"
       if params[:year] and params[:term]
         @semester = Semester.new(academic_year: params[:year], academic_term: params[:term])
