@@ -18,9 +18,13 @@
 <br>
 <br>
 New Semester
-<form method="POST">
-  School Year: <input type="text" name="year"><br>
-  Term: <input type="text" name="term"><br>
-  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
-  <input type="submit" name="request" value="newSemester">
-</form>
+
+<%= form_tag() do %>
+  <%= label_tag(:year, "School Year:") %>
+  <%= text_field_tag(:year) %>
+  <%= label_tag(:term, "Term:") %>
+  <%= text_field_tag(:term) %>
+  <%= hidden_field_tag(:request, "newSemester") %>
+  <%= submit_tag("New Semester") %>
+<% end %>
+
