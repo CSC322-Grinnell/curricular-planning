@@ -4,22 +4,22 @@
 
 ### Semester
 * `academic_year` : string
-* `academic_semester` : string (ex. fall or spring)
-* `courses_offered`: [Offering]
+* `academic_term` : string (ex. fall or spring)
+* `offering`: [Offering]
 
 ### Course
-* `course_id` : string (ex. "TUT 100" / "CSC 151")
+* `course_number` : string (ex. "TUT 100" / "CSC 151")
 * `title` : string
-* `description` : string
+* `description` : text
 * `required` : boolean
-* `offerings` : [Offering]
+* `offering` : [Offering]
 
 ### Offering
 * `course` : Course
-* `professor` : Professor
+* `professor` : string
 * `time` : string
 * `semester` : Semester
-* `students_planned` : [Student]
+* `students` : [Student]
 * `capacity` : integer
 
 ## Other Possible Models
