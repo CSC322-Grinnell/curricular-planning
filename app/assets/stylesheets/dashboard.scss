@@ -1,0 +1,37 @@
+// Place all the styles related to the Dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  display: inline-block;
+  margin:auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr.bad {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+tr.warn {
+  background-color: #aaaaaa;
+  color: #000000;
+}
+
+tr.okay {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+div.year {
+  margin:auto;
+  width:80%;
+}
+

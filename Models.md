@@ -15,12 +15,12 @@
 * `offering` : [Offering]
 
 ### Offering
-* `course` : Course
 * `professor` : string
 * `time` : string
+* `capacity` : integer
+* `course` : Course
 * `semester` : Semester
 * `students` : [Student]
-* `capacity` : integer
 
 ## Other Possible Models
 
