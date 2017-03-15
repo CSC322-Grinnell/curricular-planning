@@ -26,5 +26,17 @@ New Semester
   <%= text_field_tag(:term) %>
   <%= hidden_field_tag(:request, "newSemester") %>
   <%= submit_tag("New Semester") %>
+  
+<%= form_tag() do %>
+  <%= label_tag(:course_number, "Course Number:") %>
+  <%= text_field_tag(:course_number) %>
+  <%= label_tag(:title, "Title:") %>
+  <%= text_field_tag(:title) %>
+  <%= label_tag(:description, "Description:") %>
+  <%= text_field_tag("Description") %>
+  <%= label_tag(:required, "Required:") %>
+  <%= text_field_tag("Required") %>
+  <%= hidden_field_tag(:request, "newCourse") %>
+  <%= submit_tag("New Course") %>
 <% end %>
 
