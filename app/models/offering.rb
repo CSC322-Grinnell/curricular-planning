@@ -3,5 +3,5 @@ class Offering < ActiveRecord::Base
   validates_associated :course
   belongs_to :semester, inverse_of: :offering
   validates_associated :semester
-  validates :professor, :time, :capacity, presence: true
+  validates :professor, :time, :capacity, :course, :semester, presence: true
 end

@@ -8,6 +8,7 @@
   <link href='http://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
+<<<<<<< HEAD
 
 <%= render 'layouts/header' %>
 <%= render 'devise/menu/registration_items' %>
@@ -15,6 +16,22 @@
 
 <p class = "notice"><%= notice %></p>
 <p class = "alert"><%= alert %></p>
+=======
+<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+<div id="user_nav">
+    <% if user_signed_in? %>
+        Signed in as <%= current_user.email %>. Do you want to leave this page?
+        <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
+        <%= link_to 'Register', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>
+    <% end %>
+</div>
+>>>>>>> 31e9ad83ba5845840ad6f1a059980781a316cd07
 <%= yield %>
 
 </body>
