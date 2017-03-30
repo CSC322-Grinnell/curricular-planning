@@ -19,6 +19,11 @@
 
 ## Info
 
+*FAQ 
+
+"action controller doesn't recognize term input" 
+run db:drop db:create db:migrate in terminal 
+
 * Ruby version `Rails 4.1.8`
 
 * System dependencies
