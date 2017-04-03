@@ -16,17 +16,16 @@ class DashboardController < ApplicationController
   private
 
   def handleNewSemester
-    if params[:year] and params[:term]
+    if params.require(:year) and params.require(:term)
       semester = Semester.new(academic_year: params[:year], academic_term: params[:term])
       semester.save if semester.valid?
     end
   end
 
   def handleNewCourse
-    if params[:course_number] \
-      and params[:title] \
-      and params[:description] \
-      and params[:required]
+    requiredParams = [:course_number, :title, :description, :required]
+    # check if all requried parameters are present
+    if requiredParams.reduce(true) {|val,x| val and params.require(x)}
       course = Course.new(course_number: params[:course_number],
                           title: params[:title],
                           description: params[:description],
