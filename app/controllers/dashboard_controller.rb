@@ -12,16 +12,16 @@ class DashboardController < ApplicationController
     end
     redirect_to "/dashboard"
   end
-  
-  private 
-  
+
+  private
+
   def handleNewSemester
     if params[:year] and params[:term]
-      @semester = Semester.new(academic_year: params[:year], academic_term: params[:term])
-      @semester.save
+      semester = Semester.new(academic_year: params[:year], academic_term: params[:term])
+      semester.save if semester.valid?
     end
   end
-  
+
   def handleNewCourse
     if params[:course_number] \
       and params[:title] \
@@ -34,5 +34,5 @@ class DashboardController < ApplicationController
       course.save if course.valid?
     end
   end
-  
+
 end
