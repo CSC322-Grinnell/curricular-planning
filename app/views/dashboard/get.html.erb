@@ -26,8 +26,11 @@ New Semester
   <%= text_field_tag(:term) %>
   <%= hidden_field_tag(:request, "newSemester") %>
   <%= submit_tag("New Semester") %>
+<% end %>
   
 <%= form_tag() do %>
+  <%= label_tag(:semester, "Semester:") %>
+  <%= f.collection_select :semester, semesters.order(:academic_year),:academic_year,:academic_term, include_blank: true %>
   <%= label_tag(:course_number, "Course Number:") %>
   <%= text_field_tag(:course_number) %>
   <%= label_tag(:title, "Title:") %>
