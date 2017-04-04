@@ -48,3 +48,6 @@ bower.json
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ingore test coverage output from simplecov
+coverage
