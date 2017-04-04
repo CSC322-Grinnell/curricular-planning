@@ -46,3 +46,5 @@ gem 'minitest'
 # Show a pretty report for minitest
 gem 'minitest-reporters'
 gem 'minitest-autotest'
+
+gem 'simplecov', :require => false, :group => :test
