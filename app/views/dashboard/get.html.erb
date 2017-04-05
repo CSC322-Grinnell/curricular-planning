@@ -1,3 +1,4 @@
+<h1>Dashboard</h1>
 <% @semesters.each do |semester| %>
   <table>
     <caption><%= semester.academic_term %> <%= semester.academic_year %></caption>
@@ -27,4 +28,3 @@ New Semester
   <%= hidden_field_tag(:request, "newSemester") %>
   <%= submit_tag("New Semester") %>
 <% end %>
-
