@@ -1,7 +1,8 @@
 <h1>Dashboard</h1>
+<% semesterCount = 1 %>
 <% @semesters.each do |semester| %>
   <table>
-    <caption><%= semester.academic_term %> <%= semester.academic_year %></caption>
+    <caption><h3><%= semester.academic_term %> <%= semester.academic_year %></h3></caption>
     <tr>
       <th>Class</th>
       <th>Professor</th>
@@ -15,6 +16,10 @@
       </tr>
     <% end %>
   </table>
+  <% if semesterCount % 2 == 0 %>
+    <br/>
+    <br/>
+  <% end; semesterCount += 1 %>
 <% end %>
 <br/>
 <br/>
@@ -29,7 +34,7 @@
   <%= submit_tag("New Semester") %>
 <% end %>
 <br/>
-  
+
 <h3>New Course</h3>
 <%= form_tag() do %>
   <%= label_tag(:course_number, "Course Number:") %>
@@ -43,7 +48,7 @@
   <%= hidden_field_tag(:request, "newCourse") %>
   <%= submit_tag("New Course") %>
 <% end %>
-<br/> 
+<br/>
 
 <h3>New Offering</h3>
 <%= form_tag() do %>
