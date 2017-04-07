@@ -9,7 +9,8 @@ devise_scope :user do
   end
 
   unauthenticated do
-    root 'devise/sessions#new', as: :unauthenticated_root
+    root 'static_pages#root', as: :unauthenticated_root
+   # root 'devise/sessions#new', as: :unauthenticated_root
   end
 end
 

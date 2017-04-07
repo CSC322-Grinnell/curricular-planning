@@ -12,6 +12,8 @@
  *
  *= require_self
  */
+ 
+
 
  @import "normalize-rails";
  @import "reset";
@@ -21,4 +23,9 @@
  @import "partials/mixins";
  @import "partials/layout";
  @import "style";
+
+ 
+// div.container {
+//  @include outer-container(100%);
+//}
 

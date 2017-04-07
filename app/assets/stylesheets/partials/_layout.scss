@@ -1,3 +1,6 @@
+@import "bourbon";
+@import "neat";
+
 // breakpoints
    
 $S:     320px;   
@@ -17,3 +20,10 @@ $L:     1170px;
    @media only screen and (min-width: $L) { @content; } 
   }
 }
+
+//perhaps it is this 
+
+// div.container {
+//  @include outer-container(100%);
+//}
+
