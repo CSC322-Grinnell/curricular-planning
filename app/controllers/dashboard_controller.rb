@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+
   def get
     @semesters = Semester.all
   end
@@ -6,11 +7,11 @@ class DashboardController < ApplicationController
   def post
     case params[:request]
     when "newSemester"
-      handleNewSemester
+      flash[:notice] = "New Semester Created" if handleNewSemester
     when "newCourse"
-      handleNewCourse
+      flash[:notice] = "New Course Created" if handleNewCourse
     when "newOffering"
-      handleNewOffering
+      flash[:notice] = "New Offering Created" of handleNewOffering
     end
     redirect_to "/dashboard"
   end
@@ -20,19 +21,19 @@ class DashboardController < ApplicationController
   def handleNewSemester
     if params.require(:year) and params.require(:term)
       semester = Semester.new(academic_year: params[:year], academic_term: params[:term])
-      semester.save if semester.valid?
+      return semester.save
     end
   end
 
   def handleNewCourse
     requiredParams = [:course_number, :title, :description]
-    # check if all required parameters are present
+    # check if all requried parameters are present
     if requiredParams.reduce(true) {|val,x| val and params.require(x)}
       course = Course.new(course_number: params[:course_number],
                           title: params[:title],
                           description: params[:description],
                           required: !!params[:required])
-      course.save if course.valid?
+      return course.save
     end
   end
 
@@ -45,7 +46,7 @@ class DashboardController < ApplicationController
                           capacity: params[:capacity].to_i)
       offering.semester= Semester.find(params[:semester])
       offering.course= Course.find(params[:course])
-      offering.save if offering.valid?
+      return offering.save
     end
   end
 end

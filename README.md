@@ -17,6 +17,10 @@
 3. `bundle install` to install Gem dependencies
 4. `rails s` to start server
 
+## Issues During Development
+* *Rails Error: "action controller doesn't recognize term input"*
+   * Run `rake db:drop db:create db:migrate`
+
 ## Info
 
 * Ruby version `Rails 4.1.8`
