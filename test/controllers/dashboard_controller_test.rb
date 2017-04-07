@@ -32,5 +32,24 @@ class DashboardControllerTest < ActionController::TestCase
     assert_equal initialNumberSemesters + 1, Semester.count
     assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
   end
-  
+
+  test "A properly formatted POST request to the DashboardController should create a corresponding Offering" do
+    initialNumberOfferings = Offering.count
+    professor = "Prof"
+    time = "in the morning"
+    capacity = 25
+    course = Course.all[0].id
+    semester = Semester.all[0].id
+    post :post,
+      request: "newOffering",
+      professor: professor,
+      time: time,
+      capacity: capacity,
+      course: course,
+      semester: semester
+    assert_response :found
+    assert_equal initialNumberOfferings + 1, Offering.count
+    assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
+  end
+
 end
