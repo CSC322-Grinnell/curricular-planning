@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
     when "newCourse"
       flash[:notice] = "New Course Created" if handleNewCourse
     when "newOffering"
-      flash[:notice] = "New Offering Created" of handleNewOffering
+      flash[:notice] = "New Offering Created" if handleNewOffering
     end
     redirect_to "/dashboard"
   end
