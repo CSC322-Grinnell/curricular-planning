@@ -15,7 +15,8 @@
 1. Clone this repository.
 2. `cd` into the repository
 3. `bundle install` to install Gem dependencies
-4. `rails s` to start server
+4. Install `Bourbon` requirements with `bourbon install`
+5. `rails s` to start server
 
 ## Info
 
