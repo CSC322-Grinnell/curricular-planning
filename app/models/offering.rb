@@ -1,4 +1,5 @@
 class Offering < ActiveRecord::Base
+  resourcify
   belongs_to :course, inverse_of: :offering
   validates_associated :course
   belongs_to :semester, inverse_of: :offering
