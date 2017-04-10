@@ -1,9 +1,12 @@
 class Ability
   include CanCan::Ability
 
-  if user.has_role? :admin
-    can :manage, :all #these will be changed according to our dashboard
-  else
-    can :read, :all
+  def initialize(user)
+    user ||= User.new # guest user (not logged in)
+    if user.has_role?(:admin)
+      can :manage, :all
+    else
+      can :read, :all
+    end
   end
 end
