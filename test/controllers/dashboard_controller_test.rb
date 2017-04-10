@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class DashboardControllerTest < ActionController::TestCase
+  include Devise::Test::ControllerHelpers
   tests DashboardController
 
   test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
