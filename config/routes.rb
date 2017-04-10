@@ -2,20 +2,21 @@ Rails.application.routes.draw do
   get 'home/index'
 
 devise_for :users
+root 'home#index', as: :authenticated_root #homepage
 
 devise_scope :user do
   authenticated :user do
-    root 'home#index', as: :authenticated_root #homepage
+    get 'dashboard' => 'dashboard#get'
   end
 
-  unauthenticated do
-    root 'static_pages#root', as: :unauthenticated_root
+#  unauthenticated do
+ #   root 'static_pages#root', as: :unauthenticated_root
    # root 'devise/sessions#new', as: :unauthenticated_root
-  end
+#  end
 end
 
   # Example of regular route:
-     get 'dashboard' => 'dashboard#get'
+   #  get 'dashboard' => 'dashboard#get'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -63,6 +64,6 @@ end
   #     resources :products
   #   end
   
- root 'static_pages#root'
+ root 'home#index'  
   
 end

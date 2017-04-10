@@ -37,7 +37,7 @@ Modules - reusable parts of our design
 
 -------------------------------- */
 .element {
-  @include grid-container;
+  @include grid-container(100%);
 }
 //.cd-content {
 //	@include outer-container(100%);
