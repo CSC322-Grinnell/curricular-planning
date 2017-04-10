@@ -6,12 +6,14 @@
     <tr>
       <th>Class</th>
       <th>Professor</th>
+      <th>Required?</th>
       <th>Interest</th>
     </tr>
     <% semester.offering.each do |offering| %>
       <tr>
-        <td><%= offering.course.course_number %></td>
+        <td><%= offering.course.getName %></td>
         <td><%= offering.professor %></td>
+        <td><%= offering.course.required ? "Yes" : "No"%></td>
         <td>x/<%= offering.capacity %></td>
       </tr>
     <% end %>
@@ -59,7 +61,7 @@
   <%= label_tag(:capacity, "Capacity:") %>
   <%= number_field_tag(:capacity, 25, min: 0, step: 1) %><br/>
   <%= label_tag(:course, "Course:") %>
-  <%= collection_select(nil, :course, Course.order(:course_number), :id, :title)%><br/>
+  <%= collection_select(nil, :course, Course.order(:course_number), :id, :getName)%><br/>
   <%= label_tag(:semester, "Semester:") %>
   <%= collection_select(nil, :semester, Semester.order(:academic_year), :id, :getName)%><br/>
   <%= hidden_field_tag(:request, "newOffering") %>
