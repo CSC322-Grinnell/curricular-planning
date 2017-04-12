@@ -49,5 +49,11 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
+<<<<<<< HEAD
 # Ingore test coverage output from simplecov
 coverage
+=======
+
+# Ignore Bourbon source directory
+bourbon
+>>>>>>> e53cd7b3494e0a1561f58b14f4f08ba4efeff5e6
