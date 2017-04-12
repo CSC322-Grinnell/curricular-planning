@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
 
   def get
     @semesters = Semester.all
+    @selected_offerings = User.current_user.offering
   end
 
   def post
@@ -12,6 +13,10 @@ class DashboardController < ApplicationController
       flash[:notice] = "New Course Created" if handleNewCourse
     when "newOffering"
       flash[:notice] = "New Offering Created" if handleNewOffering
+    else 
+      puts
+      puts "---- REQUEST ----"
+      puts params.to_s
     end
     redirect_to "/dashboard"
   end
