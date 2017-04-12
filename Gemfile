@@ -28,6 +28,9 @@ gem 'spring',        group: :development
 
 #for user authentication
 gem 'devise'
+#for admin/user roles
+gem 'cancancan'
+gem 'rolify'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
