@@ -29,6 +29,9 @@ gem 'bourbon'
 gem 'neat'
 gem "normalize-rails"
 gem 'devise'
+#for admin/user roles
+gem 'cancancan'
+gem 'rolify'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -57,4 +60,6 @@ gem 'minitest'
 # Show a pretty report for minitest
 gem 'minitest-reporters'
 gem 'minitest-autotest'
+
+gem 'simplecov', :require => false, :group => :test
 end
