@@ -1,7 +1,7 @@
 class DashboardController < ApplicationController
 
   def get
-    if user_signed_in? and User.current_user.signed_in?
+    if user_signed_in? and !User.current_user.nil?
       @semesters = Semester.all
       @user = User.current_user
       @selected_offerings = @user.offering
@@ -19,8 +19,8 @@ class DashboardController < ApplicationController
       flash[:notice] = "New Course Created" if handleNewCourse
     when "newOffering"
       flash[:notice] = "New Offering Created" if handleNewOffering
-    when "newStudentInterest"
-      flash[:notice] = "New Student Interest Created" if handleNewStudentInterest
+    when "pickCourse"
+      flash[:notice] = "Course Selections Updated" if handlePickCourse
     end
     redirect_to "/dashboard"
   end
@@ -33,12 +33,6 @@ class DashboardController < ApplicationController
       return semester.save
     end
   end
-
-  def handleNewStudentInterest
-    if params.require(:offering)
-      user.offering = Offering.find(params[:offering])
-    end
-  end 
   
   def handleNewCourse
     requiredParams = [:course_number, :title, :description]
@@ -64,4 +58,17 @@ class DashboardController < ApplicationController
       return offering.save
     end
   end
+  
+  def handlePickCourse
+    if params.require(:offerings)
+      user = User.current_user
+      user.offering.clear
+      params[:offerings].each do |id, val|
+        if val == "1"
+          offering = Offering.find id
+          user.offering.push offering
+        end
+      end
+    end
+  end 
 end

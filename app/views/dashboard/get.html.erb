@@ -23,7 +23,7 @@
           <td><%= offering.professor %></td>
           <td><%= offering.course.required ? "Yes" : "No"%></td>
           <td>x/<%= offering.capacity %></td>
-          <td><%= check_box("selected", offering.id, checked: !@selected_offerings.include?(offering)) %></td>
+          <td><%= check_box("offerings", offering.id, checked: @selected_offerings.include?(offering)) %></td>
           <td>Delete</td>
 
         </tr>
