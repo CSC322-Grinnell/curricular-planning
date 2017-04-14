@@ -5,13 +5,17 @@
   <% semesterCount = 1 %>
   <% @semesters.each do |semester| %>
     <table>
-      <caption><h3><%= semester.getName %></h3></caption>
+      <caption>
+        <h3><%= semester.getName %></h3>
+        <button>Delete Semester</button>
+      </caption>
       <tr>
         <th>Class</th>
         <th>Professor</th>
         <th>Required?</th>
         <th>Interest</th>
         <th>I'm Taking</th>
+        <th>Admin</th>
       </tr>
       <% semester.offering.each do |offering| %>
         <tr>
@@ -20,7 +24,8 @@
           <td><%= offering.course.required ? "Yes" : "No"%></td>
           <td>x/<%= offering.capacity %></td>
           <td><%= check_box("selected", offering.id, checked: !@selected_offerings.include?(offering)) %></td>
-          
+          <td>Delete</td>
+
         </tr>
       <% end %>
     </table>
@@ -29,7 +34,7 @@
       <br/>
     <% end; semesterCount += 1 %>
   <% end %>
-  
+
   <%= submit_tag("Submit Course Preferences") %>
 <% end %>
 <br/>
