@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170408234710) do
+ActiveRecord::Schema.define(version: 20170414190409) do
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -36,29 +36,37 @@ ActiveRecord::Schema.define(version: 20170408234710) do
     t.string   "title",         limit: 255
     t.text     "description"
     t.boolean  "required"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
-  create_table "interests", id: false, force: :cascade do |t|
+  create_table "interests", id: false, force: true do |t|
     t.integer "user_id",     null: false
     t.integer "offering_id", null: false
   end
 
-  create_table "offerings", force: :cascade do |t|
-    t.string   "professor",   limit: 255
-    t.string   "time",        limit: 255
+  create_table "offerings", force: true do |t|
+    t.string   "professor"
+    t.string   "time"
     t.integer  "capacity"
     t.integer  "course_id"
     t.integer  "semester_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "offerings", ["course_id"], name: "index_offerings_on_course_id"
   add_index "offerings", ["semester_id"], name: "index_offerings_on_semester_id"
 
-  create_table "roles", force: :cascade do |t|
+  create_table "offerings_users", force: true do |t|
+    t.integer "offering_id"
+    t.integer "user_id"
+  end
+
+  add_index "offerings_users", ["offering_id"], name: "index_offerings_users_on_offering_id"
+  add_index "offerings_users", ["user_id"], name: "index_offerings_users_on_user_id"
+
+  create_table "roles", force: true do |t|
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -76,22 +84,24 @@ ActiveRecord::Schema.define(version: 20170408234710) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip",     limit: 255
-    t.string   "last_sign_in_ip",        limit: 255
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.integer  "offering_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["offering_id"], name: "index_users_on_offering_id"
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
   create_table "users_roles", id: false, force: :cascade do |t|
