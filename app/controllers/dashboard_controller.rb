@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
 
   def get
     @semesters = Semester.all
-    @selected_offerings = User.current_user.offering
+    @selected_offerings = []
+  
   end
 
   def post
