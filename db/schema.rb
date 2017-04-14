@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20170408234710) do
   add_index "offerings", ["course_id"], name: "index_offerings_on_course_id"
   add_index "offerings", ["semester_id"], name: "index_offerings_on_semester_id"
 
-  create_table "roles", force: true do |t|
+  create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
     t.string   "resource_type"
@@ -51,11 +51,11 @@ ActiveRecord::Schema.define(version: 20170408234710) do
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
 
-  create_table "semesters", force: true do |t|
-    t.string   "academic_year"
-    t.string   "academic_term"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+  create_table "semesters", force: :cascade do |t|
+    t.string   "academic_year", limit: 255
+    t.string   "academic_term", limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 20170408234710) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
-  create_table "users_roles", id: false, force: true do |t|
+  create_table "users_roles", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "role_id"
   end

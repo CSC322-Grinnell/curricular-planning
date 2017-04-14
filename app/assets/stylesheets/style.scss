@@ -1,8 +1,6 @@
 @import "bourbon";
 @import "neat";
 
-
-
 /* -------------------------------- 
 
 Primary style
@@ -39,17 +37,11 @@ Modules - reusable parts of our design
 .element {
   @include grid-container(100%);
 }
-//.cd-content {
-//	@include outer-container(100%);
-//}
+
 .element {
   @include grid-column(10);
   @include grid-shift(1);
 }
-//.cd-container {
-//	@include span-columns(10);
-//	@include grid-shift(1);
-//}
 
 /* -------------------------------- 
 
