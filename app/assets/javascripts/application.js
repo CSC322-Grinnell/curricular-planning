@@ -63,12 +63,3 @@ $(document).ready(function($){
 	});
 });
 
-
-
-
-
-
-
-
-
-
