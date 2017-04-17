@@ -22,7 +22,16 @@ class DashboardController < ApplicationController
     when "pickCourse"
       flash[:notice] = "Course Selections Updated" if handlePickCourse
     end
-    redirect_to "/dashboard"
+    redirect_to :dashboard
+  end
+  
+  def delete
+    case params[:request]
+    when "offering"
+      Offering.destory(params[:id])
+      flash[:notice] = "Offering Deleted"
+    end
+    redirect_to :dashboard
   end
 
   private
