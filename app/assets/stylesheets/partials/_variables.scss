@@ -1,0 +1,29 @@
+@import "bourbon";
+@import "neat";
+
+
+// colors
+
+$background: #FFFFFF; // body background color
+$color-1: #000000; // black
+$color-2: #f0f1e7; // cream
+$color-3: #000000; // black text
+
+//header height
+
+$header-height-S: 50px;
+$header-height-M: 70px;
+
+//intro height
+
+$intro-height-S: 300px;
+$intro-height-M: 400px;
+$intro-height-L: 500px;
+
+// fonts 
+
+$primary-font: 'Ubuntu', sans-serif;
+
+//z-index - order the elements from the lowest z-index(left) to the highest(right)
+
+$elements: intro-image, main-content, navigation;
