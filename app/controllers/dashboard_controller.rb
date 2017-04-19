@@ -12,24 +12,38 @@ class DashboardController < ApplicationController
   end
 
   def post
+    if !user_signed_in?
+      flash[:notice] = "You are not signed in"
+      redirect_to '/'
+      return
+    end
+    
+    # for all users
     case params[:request]
-    when "newSemester"
-      flash[:notice] = "New Semester Created" if handleNewSemester
-    when "newCourse"
-      flash[:notice] = "New Course Created" if handleNewCourse
-    when "newOffering"
-      flash[:notice] = "New Offering Created" if handleNewOffering
     when "pickCourse"
       flash[:notice] = "Course Selections Updated" if handlePickCourse
-    when  "deleteOffering"
-      flash[:notice] = "Offering Deleted" if handleDeleteOffering
-    when "deleteCourse"
-      flash[:notice] = "Course Deleted" if handleDeleteCourse
-    when "deleteSemester"
-      flash[:notice] = "Semester Deleted" if handleDeleteSemester
     end
-    redirect_to :dashboard
+    
+    # for admin only
+    if User.current_user.has_role? :admin
+      case params[:request]
+      when "newSemester"
+        flash[:notice] = "New Semester Created" if handleNewSemester
+      when "newCourse"
+        flash[:notice] = "New Course Created" if handleNewCourse
+      when "newOffering"
+        flash[:notice] = "New Offering Created" if handleNewOffering
+      when  "deleteOffering"
+        flash[:notice] = "Offering Deleted" if handleDeleteOffering
+      when "deleteCourse"
+        flash[:notice] = "Course Deleted" if handleDeleteCourse
+      when "deleteSemester"
+        flash[:notice] = "Semester Deleted" if handleDeleteSemester
+      end
+      redirect_to :dashboard
+    end
   end
+  
   
   private
 
