@@ -1,23 +1,14 @@
 class DashboardController < ApplicationController
 
+  before_filter :authenticate_user!
+  
   def get
-    if user_signed_in? and !User.current_user.nil?
-      @semesters = Semester.all
-      @user = User.current_user
-      @selected_offerings = @user.offering
-    else
-      flash[:notice] = "Log in to access the dashboard"
-      redirect_to "/"
-    end
+    @semesters = Semester.all
+    @user = User.current_user
+    @selected_offerings = @user.offering
   end
 
   def post
-    if !user_signed_in?
-      flash[:notice] = "You are not signed in"
-      redirect_to '/'
-      return
-    end
-    
     # for all users
     case params[:request]
     when "pickCourse"
@@ -43,7 +34,6 @@ class DashboardController < ApplicationController
       redirect_to :dashboard
     end
   end
-  
   
   private
 
