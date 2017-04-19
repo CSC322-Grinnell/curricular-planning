@@ -30,14 +30,14 @@ four:
 
 five:
   professor: "PM"
-  time: "14:00 MWF"
+  time: "15:00 MWF"
   capacity: 17
   semester: spring
   course: csc207
 
 six:
   professor: "Sam"
-  time: "12:00 MWF"
+  time: "13:00 MWF"
   capacity: 16
   semester: fall
   course: csc499
