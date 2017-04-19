@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "devise/my_devise/registrations" }
+  devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
-  get 'dashboard' => 'dashboard#get'
- post 'dashboard' => 'dashboard#post'
+
+  devise_scope :user do
+    authenticated :user do
+      root 'dashboard#get', as: :authenticated_root
+      post 'dashboard' => 'dashboard#post'
+    end
+
+    unauthenticated do
+      root :to => redirect("/users/sign_in")
+    end
+  end
 
 end
