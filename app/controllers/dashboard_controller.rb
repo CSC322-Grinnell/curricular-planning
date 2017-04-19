@@ -21,19 +21,16 @@ class DashboardController < ApplicationController
       flash[:notice] = "New Offering Created" if handleNewOffering
     when "pickCourse"
       flash[:notice] = "Course Selections Updated" if handlePickCourse
+    when  "deleteOffering"
+      flash[:notice] = "Offering Deleted" if handleDeleteOffering
+    when "deleteCourse"
+      flash[:notice] = "Course Deleted" if handleDeleteCourse
+    when "deleteSemester"
+      flash[:notice] = "Semester Deleted" if handleDeleteSemester
     end
     redirect_to :dashboard
   end
   
-  def delete
-    case params[:request]
-    when "offering"
-      Offering.destory(params[:id])
-      flash[:notice] = "Offering Deleted"
-    end
-    redirect_to :dashboard
-  end
-
   private
 
   def handleNewSemester
@@ -80,4 +77,26 @@ class DashboardController < ApplicationController
       end
     end
   end 
+  
+  def handleDeleteOffering
+    Offering.destroy params[:id]
+    return !Offering.exists?(params[:id]) 
+  end
+  
+  def handleDeleteCourse
+    Course.destroy params[:id]
+    return !Course.exists?(params[:id]) 
+  end
+  
+  def handleDeleteSemester
+    # delete all the offerings in the semester 
+    semester = Semester.find(params[:id])
+    return false unless semester
+    semester.offering.each do |offering| 
+      offering.destroy
+    end
+    # delete semester
+    semester.destroy
+    return !Semester.exists?(params[:id]) # verify deleted
+  end
 end
