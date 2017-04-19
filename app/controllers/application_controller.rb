@@ -7,9 +7,6 @@ class ApplicationController < ActionController::Base
     User.current_user = current_user
   end
 
-  def after_sign_in_path_for(resource)
-    get '/dashboard'
-  end
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
