@@ -4,6 +4,7 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
+=begin
   test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
     initialNumberCourses = Course.count
     number = "161"
@@ -53,4 +54,5 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
 
+=end
 end
