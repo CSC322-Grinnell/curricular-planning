@@ -52,5 +52,4 @@ class DashboardControllerTest < ActionController::TestCase
     assert_equal initialNumberOfferings + 1, Offering.count
     assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
-
 end
