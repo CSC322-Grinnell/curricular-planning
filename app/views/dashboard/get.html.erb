@@ -1,4 +1,7 @@
+<% provide(:title, "Home") %>
+
 <h1>Dashboard</h1>
+<h2>Hey there, <%= @user.email%>!</h2>
 
 <%= render is_admin? ? 'admin_dash' : 'user_dash' %> 
 

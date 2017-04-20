@@ -1,10 +1,20 @@
-<h2>Hey there, <%= @user.email%>!</h2>
+<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  You are an administrator!
+</div>
 
 <% semesterCount = 1 %>
 <% @semesters.each do |semester| %>
 <table>
   <caption>
-    <h3><%= semester.getName %><%= button_to "Delete Semester", action: "post", request: "deleteSemester", id: semester.id %></h3>
+    <h3>
+      <%= semester.getName %>
+      <%= button_to "Delete Semester", 
+            { action: "post", 
+              request: "deleteSemester", 
+              id: semester.id
+            },
+            class: 'btn btn-default btn-sm btn-block' %>
+    </h3>
     
   </caption>
   <tr>
