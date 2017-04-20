@@ -1,47 +1,75 @@
-<div class="alert alert-info alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  You are an administrator!
+<% semesterCount = 1 %>
+<div class="row">
+  <% @semesters.each do |semester| %>
+    <div class="col-md-6">
+      <div class="h3">
+        <%= semester.getName %>
+        <span class="btn-group pull-right">
+          <%= button_to "Delete", 
+                { action: "post", 
+                  request: "deleteSemester", 
+                  id: semester.id
+                },
+                class: 'btn btn-danger btn-xs' %>
+        </span>
+      </div>
+      <table class="table table-hover">
+        <tr>
+          <th>Class</th>
+          <th>Professor</th>
+          <th>Time</th>
+          <th>Required?</th>
+          <th>Interest</th>
+          <th>Admin</th>
+        </tr>
+        <% semester.offering.each do |offering| %>
+          <tr>
+            <td><%= offering.course.getName %></td>
+            <td><%= offering.professor %></td>
+            <td><%= offering.time %></td>
+            <td><%= offering.course.required ? "Yes" : "No"%></td>
+            <td><%= offering.user.count %> / <%= offering.capacity %></td>
+            <td><%= button_to "Delete", 
+                      { action: "post", 
+                        request: "deleteOffering", 
+                        id: offering.id
+                      },
+                      class: 'btn btn-default btn-sm' %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <% if semesterCount % 2 == 0 %>
+      </div>
+      <div class="row">
+    <% end; semesterCount += 1 %>
+  <% end %>
 </div>
 
-<% semesterCount = 1 %>
-<% @semesters.each do |semester| %>
-<table>
-  <caption>
-    <h3>
-      <%= semester.getName %>
-      <%= button_to "Delete Semester", 
-            { action: "post", 
-              request: "deleteSemester", 
-              id: semester.id
-            },
-            class: 'btn btn-default btn-sm btn-block' %>
-    </h3>
-    
-  </caption>
-  <tr>
-    <th>Class</th>
-    <th>Professor</th>
-    <th>Time</th>
-    <th>Required?</th>
-    <th>Interest</th>
-    <th>Admin</th>
-  </tr>
-  <% semester.offering.each do |offering| %>
-    <tr>
-      <td><%= offering.course.getName %></td>
-      <td><%= offering.professor %></td>
-      <td><%= offering.time %></td>
-      <td><%= offering.course.required ? "Yes" : "No"%></td>
-      <td><%= offering.user.count %> / <%= offering.capacity %></td>
-      <td><%= button_to "Delete", action: "post", request: "deleteOffering", id: offering.id %></td>
+<!-- Trigger the modal with a button -->
+<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
 
-    </tr>
-  <% end %>
-</table>
-<% if semesterCount % 2 == 0 %>
-  <br/>
-  <br/>
-<% end; semesterCount += 1 %>
-<% end %>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <p>Some text in the modal.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <h3>New Semester</h3>
