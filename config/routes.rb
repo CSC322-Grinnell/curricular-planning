@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
-<<<<<<< HEAD
+
  # root 'home#index'
   
   devise_scope :user do
@@ -18,9 +18,4 @@ Rails.application.routes.draw do
     end
   end 
 end 
-=======
-  get 'dashboard' => 'dashboard#get'
-  post 'dashboard' => 'dashboard#post'
 
-end
->>>>>>> origin
