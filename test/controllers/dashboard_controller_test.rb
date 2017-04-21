@@ -4,6 +4,11 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
+  test "Student Interest Input: Properly formed POST request" do
+    post :post,
+      request: "pickCourse"
+    assert_response :found
+  end
 =begin
   test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
     initialNumberCourses = Course.count
