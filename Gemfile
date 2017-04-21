@@ -51,3 +51,6 @@ gem 'minitest-reporters'
 gem 'minitest-autotest'
 
 gem 'simplecov', :require => false, :group => :test
+
+# Bootstrap
+gem 'bootstrap-sass'
