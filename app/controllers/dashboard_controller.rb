@@ -31,8 +31,8 @@ class DashboardController < ApplicationController
       when "deleteSemester"
         flash[:notice] = "Semester Deleted" if handleDeleteSemester
       end
-      redirect_to :dashboard
     end
+    redirect_to :dashboard
   end
   
   private
