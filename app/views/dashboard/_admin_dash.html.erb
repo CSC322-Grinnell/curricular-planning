@@ -57,8 +57,8 @@
     </button>
   </div>
   <div class="col-md-3 center">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewCourse">
-      <i class="material-icons icon-btn">add</i> New Course
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalManageCourses">
+      <i class="material-icons icon-btn">more_vert</i> Manage Courses
     </button>
   </div>
   <div class="col-md-3 center">
@@ -98,24 +98,37 @@
   </div>
 </div>
 
-<!--Modal for creating new course NTO WORKING -->
-<div id="modalNewSemester" class="modal fade" role="dialog">
+<!--Modal for managing courses -->
+<div id="modalManageCourses" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
-      <%= form_tag(class: "form-horizontal") do %>
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">New Semester</h4>
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Manage Courses</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
         </div>
-        <div class="modal-body">
-          <div class="form-group">
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <%= submit_tag "Create", class: "btn btn-primary" %>
-        </div>
-      <% end %>
+    
+        <h3>New Course</h3>
+        <%= form_tag() do %>
+          <%= label_tag(:course_number, "Course Number:") %>
+          <%= text_field_tag(:course_number) %><br/>
+          <%= label_tag(:title, "Title:") %>
+          <%= text_field_tag(:title) %><br/>
+          <%= label_tag(:description, "Description:") %>
+          <%= text_field_tag(:description) %><br/>
+          <%= check_box_tag(:required, true) %>
+          <%= label_tag(:required, "Course is required") %><br/>
+          <%= hidden_field_tag(:request, "newCourse") %>
+          <%= submit_tag("New Course") %>
+        <% end %>
+        <br/>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -163,18 +176,3 @@
 </div>
 
 
-
-<h3>New Course</h3>
-<%= form_tag() do %>
-  <%= label_tag(:course_number, "Course Number:") %>
-  <%= text_field_tag(:course_number) %><br/>
-  <%= label_tag(:title, "Title:") %>
-  <%= text_field_tag(:title) %><br/>
-  <%= label_tag(:description, "Description:") %>
-  <%= text_field_tag(:description) %><br/>
-  <%= check_box_tag(:required, true) %>
-  <%= label_tag(:required, "Course is required") %><br/>
-  <%= hidden_field_tag(:request, "newCourse") %>
-  <%= submit_tag("New Course") %>
-<% end %>
-<br/>
