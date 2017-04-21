@@ -15,7 +15,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
         resource.add_role "admin"
       end
       @ability = Ability.new(resource)
-      @ability.save
     end
   end
 
