@@ -7,7 +7,6 @@ class Ability
       can [:edit, :delete, :new, :create, :update, :destroy], [Course, Offering, Semester] 
       can :read, :all
     else
-   # can [:edit, :delete, :new, :create, :update, :destroy], [Enrollment]
       can :read, :all
     end
   end
