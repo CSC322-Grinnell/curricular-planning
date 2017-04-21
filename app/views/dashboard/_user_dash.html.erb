@@ -1,0 +1,35 @@
+<%= form_tag() do %>
+  <%= hidden_field_tag(:request, "pickCourse") %>
+  <% semesterCount = 1 %>
+  <% @semesters.each do |semester| %>
+    <table>
+      <caption>
+        <h3><%= semester.getName %></h3>
+      </caption>
+      <tr>
+        <th>Class</th>
+        <th>Professor</th>
+        <th>Required?</th>
+        <th>Interest</th>
+        <th>I'm Taking</th>
+      </tr>
+      <% semester.offering.each do |offering| %>
+        <tr>
+          <td><%= offering.course.getName %></td>
+          <td><%= offering.professor %></td>
+          <td><%= offering.course.required ? "Yes" : "No"%></td>
+          <td><%= offering.user.count %> / <%= offering.capacity %></td>
+          <td><%= check_box("offerings", offering.id, checked: @selected_offerings.include?(offering)) %></td>
+        </tr>
+      <% end %>
+    </table>
+    <% if semesterCount % 2 == 0 %>
+      <br/>
+      <br/>
+    <% end; semesterCount += 1 %>
+  <% end %>
+
+  <%= submit_tag("Submit Course Preferences") %>
+<% end %>
+<br/>
+<br/>

@@ -4,5 +4,7 @@ class Offering < ActiveRecord::Base
   validates_associated :course
   belongs_to :semester, inverse_of: :offering
   validates_associated :semester
-  validates :professor, :time, :capacity, :course, :semester, presence: true
+  has_and_belongs_to_many :user
+  validates :professor, :time, :capacity, :course, :semester, presence: true, uniqueness: { scope: [:professor, :time]}
+  
 end
