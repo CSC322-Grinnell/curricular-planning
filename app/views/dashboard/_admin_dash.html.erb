@@ -51,17 +51,17 @@
 <br/>
 
 <div class="row">
-  <div class="col-md-3 center">
+  <div class="col-md-4 center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewSemester">
       <i class="material-icons icon-btn">add</i> New Semester
     </button>
   </div>
-  <div class="col-md-3 center">
+  <div class="col-md-4 center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalManageCourses">
       <i class="material-icons icon-btn">more_vert</i> Manage Courses
     </button>
   </div>
-  <div class="col-md-3 center">
+  <div class="col-md-4 center">
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalNewOffering">
       <i class="material-icons icon-btn">add</i> New Offering
     </button>
@@ -109,8 +109,34 @@
       <div class="modal-body">
         <div class="form-group">
         </div>
+        
+        <table class="table table-hover">
+          <tr>
+            <th>Course Number</th>
+            <th>Course Title</th>
+            <th>Description</th>
+            <th>Required?</th>
+            <th>Modify</th>
+          </tr>
+            <% @courses.each do |course| %>
+              <tr>
+                <td><%= course.course_number %></td>
+                <td><%= course.title %></td>
+                <td><%= course.description %></td>
+                <td><%= course.required ? "Yes" : "No"%></td>
+                <td><%= button_to "Delete", 
+                          { action: "post", 
+                            request: "deleteCourse", 
+                            id: course.id
+                          },
+                          class: 'btn btn-default btn-sm' %>
+                </td>
+              </tr>
+            <% end %>
+        </table>
+
     
-        <h3>New Course</h3>
+        <h4>New Course</h4>
         <%= form_tag() do %>
           <%= label_tag(:course_number, "Course Number:") %>
           <%= text_field_tag(:course_number) %><br/>
@@ -174,5 +200,3 @@
     </div>
   </div>
 </div>
-
-
