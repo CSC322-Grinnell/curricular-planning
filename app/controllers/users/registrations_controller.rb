@@ -11,7 +11,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save
-      if resource.email == "sams@sam.r"
+      if resource.email == "rebelsky@grinnell.edu"
         resource.add_role "admin"
       end
       @ability = Ability.new(resource)
