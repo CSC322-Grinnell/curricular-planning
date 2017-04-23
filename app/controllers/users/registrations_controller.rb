@@ -8,9 +8,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if resource.save
+      if resource.email == "rebelsky@grinnell.edu"
+        resource.add_role "admin"
+      end
+      @ability = Ability.new(resource)
+    end
+  end
 
   # GET /resource/edit
   # def edit
