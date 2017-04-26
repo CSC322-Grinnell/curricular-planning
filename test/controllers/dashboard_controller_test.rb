@@ -2,7 +2,6 @@ require 'test_helper'
 
 class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
-  include Devise::Controllers::UrlHelpers
   tests DashboardController
 
   def admin_signin
