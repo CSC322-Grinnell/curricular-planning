@@ -6,5 +6,4 @@ class Offering < ActiveRecord::Base
   validates_associated :semester
   has_and_belongs_to_many :user
   validates :professor, :time, :capacity, :course, :semester, presence: true, uniqueness: { scope: [:professor, :time]}
-  
 end

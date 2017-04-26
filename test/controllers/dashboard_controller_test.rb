@@ -4,13 +4,26 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
+  def admin_signin
+    @user = User.create(email:"fixture@test.com", password: Devise::Encryptor.digest(User, "helloworld"))
+    @user.add_role :admin
+    sign_in @user
+  end
+
+  def user_signin
+    @user = User.create(email:"student@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
+    sign_in @user
+  end
+
   test "Student Interest Input: Properly formed POST request" do
     post :post,
       request: "pickCourse"
     assert_response :found
   end
-=begin
+
   test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
+    admin_signin
+
     initialNumberCourses = Course.count
     number = "161"
     title = "Functional"
@@ -28,6 +41,8 @@ class DashboardControllerTest < ActionController::TestCase
   end
 
   test "A properly formatted POST request to the DashboardController should create a corresponding semester" do
+    admin_signin
+
     initialNumberSemesters = Semester.count
     testYear = "2017"
     testTerm = "Spring"
@@ -41,6 +56,8 @@ class DashboardControllerTest < ActionController::TestCase
   end
 
   test "A properly formatted POST request to the DashboardController should create a corresponding Offering" do
+    admin_signin
+
     initialNumberOfferings = Offering.count
     professor = "Prof"
     time = "in the morning"
@@ -59,5 +76,4 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
 
-=end
 end

@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
     @semesters = Semester.all
     @user = User.current_user
     @selected_offerings = @user.offering
+    @courses = Course.all
   end
 
   def post
@@ -88,8 +89,15 @@ class DashboardController < ApplicationController
   end
   
   def handleDeleteCourse
-    Course.destroy params[:id]
-    return !Course.exists?(params[:id]) 
+    # delete all the offerings related to course
+    course = Course.destroy params[:id]
+    return false unless course
+    course.offering.each do |offering|
+      offering.destroy
+    end
+    # delete course
+    course.destroy
+    return !Course.exists?(params[:id]) #verify deleted
   end
   
   def handleDeleteSemester
