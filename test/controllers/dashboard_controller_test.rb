@@ -46,6 +46,7 @@ class DashboardControllerTest < ActionController::TestCase
 
   test "A properly formatted POST request to the DashboardController should create a corresponding Offering" do
     admin_signin
+
     initialNumberOfferings = Offering.count
     professor = "Prof"
     time = "in the morning"
