@@ -111,8 +111,21 @@ class DashboardControllerTest < ActionController::TestCase
   end
 
   test "user semester deletion should fail" do
+    testYear = "2017"
+    testTerm = "Spring"
+
+    semester = Semester.new(academic_year: testYear, academic_term: testTerm) 
+    assert semester.save
 
     user_signin
+
+    initialNumberSemesters = Semester.count
+    post :post,
+      request: "deleteSemester",
+      id: semester.id
+    assert_equal initialNumberSemesters, Semester.count
+    assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
+
   end
 
   test "user semester creation should fail" do
