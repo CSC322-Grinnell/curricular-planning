@@ -19,7 +19,7 @@ def user_signin
 end
 
 def admin_signin
-  @user = User.create(email:"admin@test.com", password: Devise::Encryptor.digest(User, "helloworld"))
+  @user = User.create(email:"fixture@grinnell.edu", password: Devise::Encryptor.digest(User, "helloworld"))
   @user.add_role :admin
   sign_in @user
 end
