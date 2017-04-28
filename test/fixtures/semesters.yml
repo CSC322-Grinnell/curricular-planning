@@ -3,11 +3,14 @@
 fall:
   academic_year: "2017/2018"
   academic_term: "Fall"
+  archived: false
 
 spring:
   academic_year: "2017/2018"
   academic_term: "Spring"
+  archived: false
 
 summer:
   academic_year: "2017/2018"
   academic_term: "Summer"
+  archived: false
