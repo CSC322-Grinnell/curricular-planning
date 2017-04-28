@@ -4,6 +4,18 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
+  test "Admin Dashboard GET should be found" do
+    admin_signin
+    get :get
+    assert_response :found
+  end
+
+  test "User Dashboard GET should be found" do
+    user_signin
+    get :get
+    assert_response :found
+  end
+
   test "admin course deletion should be successful" do
     admin_signin
 
