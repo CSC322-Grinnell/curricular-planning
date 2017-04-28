@@ -121,7 +121,7 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
   end
 
-  test "admin semester deletion should be successful" do
+  test "admin semester archive toggle should be successful" do
     testYear = "2017"
     testTerm = "Spring"
 
@@ -130,12 +130,17 @@ class DashboardControllerTest < ActionController::TestCase
 
     admin_signin
 
-    initialNumberSemesters = Semester.count
     post :post,
-      request: "deleteSemester",
+      request: "archiveSemesterToggle",
       id: semester.id
-    assert_equal initialNumberSemesters - 1, Semester.count
-    assert_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
+    semester.reload
+    assert_equal semester.archived, true
+
+    post :post,
+      request: "archiveSemesterToggle",
+      id: semester.id
+    semester.reload
+    assert_equal semester.archived, false
   end
 
   test "user semester deletion should fail" do

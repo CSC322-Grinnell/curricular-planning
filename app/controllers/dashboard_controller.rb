@@ -3,7 +3,14 @@ class DashboardController < ApplicationController
   before_filter :authenticate_user!
   
   def get
-    @semesters = Semester.all
+    if User.current_user.has_role?(:admin) and flash[:all_semesters] 
+      @semesters = Semester.all
+      @all_semesters = true
+    else 
+      @semesters = Semester.where(archived: false)
+      @all_semesters = false
+    end
+    @semesters = @semesters.order(:academic_year, :academic_term)
     @user = User.current_user
     @selected_offerings = @user.offering
     @courses = Course.all
@@ -29,9 +36,10 @@ class DashboardController < ApplicationController
         flash[:notice] = "Offering Deleted" if handleDeleteOffering
       when "deleteCourse"
         flash[:notice] = "Course Deleted" if handleDeleteCourse
-      when "deleteSemester"
-        flash[:notice] = "Semester Deleted" if handleDeleteSemester
+      when "archiveSemesterToggle"
+        flash[:notice] = "Semester Archive Changed" if handleArchiveSemesterToggle
       end
+      flash[:all_semesters] = (params[:all_semesters] == 'true')
     end
     redirect_to :dashboard
   end
@@ -100,15 +108,10 @@ class DashboardController < ApplicationController
     return !Course.exists?(params[:id]) #verify deleted
   end
   
-  def handleDeleteSemester
-    # delete all the offerings in the semester 
+  def handleArchiveSemesterToggle
     semester = Semester.find(params[:id])
     return false unless semester
-    semester.offering.each do |offering| 
-      offering.destroy
-    end
-    # delete semester
-    semester.destroy
-    return !Semester.exists?(params[:id]) # verify deleted
+    semester.archived= !semester.archived
+    return semester.save
   end
 end

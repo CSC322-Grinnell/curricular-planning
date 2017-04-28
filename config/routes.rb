@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
 
- # root 'home#index'
+  # root 'dashboard#get'
   
   devise_scope :user do
   #  root to: 'home#index'
