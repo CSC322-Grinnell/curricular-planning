@@ -1,3 +1,11 @@
+<div class="center">
+  <%= form_tag() do %>
+    <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
+    <% cls = 'btn btn-default btn-md' + (@all_semesters ? " active" : "") %>
+    <%= submit_tag "Show All Semesters", class: cls %>
+  <% end %>
+</div>
+
 <% semesterCount = 1 %>
 <div class="row">
   <% @semesters.each do |semester| %>
@@ -5,12 +13,13 @@
       <div class="h3 center">
         <%= semester.getName %>
         <span class="btn-group pull-right">
-          <%= button_to "Archive", 
+          <%= button_to (semester.archived ? "Unarchive": "Archive"), 
                 { action: "post", 
-                  request: "archiveSemester", 
-                  id: semester.id
+                  request: "archiveSemesterToggle", 
+                  id: semester.id,
+                  all_semesters: !@all_semesters
                 },
-                class: 'btn btn-danger btn-xs' %>
+                class: 'btn btn-xs ' + (semester.archived ? "btn-warning" : "btn-danger") %>
         </span>
       </div>
       <table class="table table-hover">
@@ -32,7 +41,8 @@
             <td><%= button_to "Delete", 
                       { action: "post", 
                         request: "deleteOffering", 
-                        id: offering.id
+                        id: offering.id,
+                        all_semesters: !@all_semesters
                       },
                       class: 'btn btn-default btn-sm' %>
             </td>
@@ -74,6 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_tag(class: "form-horizontal") do %>
+        <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">New Semester</h4>
@@ -127,7 +138,8 @@
                 <td><%= button_to "Delete", 
                           { action: "post", 
                             request: "deleteCourse", 
-                            id: course.id
+                            id: course.id,
+                            all_semesters: !@all_semesters
                           },
                           class: 'btn btn-default btn-sm' %>
                 </td>
@@ -138,6 +150,7 @@
     
         <h4>New Course</h4>
         <%= form_tag() do %>
+          <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
           <%= label_tag(:course_number, "Course Number:") %>
           <%= text_field_tag(:course_number) %><br/>
           <%= label_tag(:title, "Title:") %>
@@ -164,6 +177,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_tag(class: "form-horizontal") do %>
+        <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
         <%= hidden_field_tag(:request, "newOffering") %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -200,7 +214,3 @@
     </div>
   </div>
 </div>
-
-
-<%= link_to "Show All Semesters", {method: :showAllSemesters},
-              class: 'btn btn-default btn-sm' %>
