@@ -7,13 +7,13 @@ class DashboardControllerTest < ActionController::TestCase
   test "Admin Dashboard GET should be found" do
     admin_signin
     get :get
-    assert_response :found
+    assert_response 200 
   end
 
   test "User Dashboard GET should be found" do
     user_signin
     get :get
-    assert_response :found
+    assert_response 200
   end
 
   test "admin course deletion should be successful" do
