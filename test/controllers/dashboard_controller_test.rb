@@ -4,8 +4,11 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
-=begin
+
+
   test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
+    admin_signin
+
     initialNumberCourses = Course.count
     number = "161"
     title = "Functional"
@@ -23,6 +26,8 @@ class DashboardControllerTest < ActionController::TestCase
   end
 
   test "A properly formatted POST request to the DashboardController should create a corresponding semester" do
+    admin_signin
+
     initialNumberSemesters = Semester.count
     testYear = "2017"
     testTerm = "Spring"
@@ -36,6 +41,8 @@ class DashboardControllerTest < ActionController::TestCase
   end
 
   test "A properly formatted POST request to the DashboardController should create a corresponding Offering" do
+    admin_signin
+
     initialNumberOfferings = Offering.count
     professor = "Prof"
     time = "in the morning"
@@ -54,5 +61,4 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
 
-=end
 end
