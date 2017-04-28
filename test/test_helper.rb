@@ -24,6 +24,11 @@ def admin_signin
   sign_in @user
 end
 
+def user_signin
+  @user = User.create(email:"student@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
+  sign_in @user
+end
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all

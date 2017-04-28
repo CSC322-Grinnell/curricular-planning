@@ -41,6 +41,23 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
+  test "Student Interest Input: Properly formed POST request" do
+    oid = Offering.all[0].id
+
+    user_signin
+    post :post,
+      request: "pickCourse",
+      offerings: {"#{oid}":"1"}
+    assert_response :found
+    assert @user.offering.include? Offering.all[0]
+    post :post,
+      request: "pickCourse",
+      offerings: {"#{oid}":"0"} 
+
+    assert_response :found
+    assert (not @user.offering.include? Offering.all[0])
+  end
+
   test "admin course creation should be successful" do
     admin_signin
 
@@ -62,7 +79,6 @@ class DashboardControllerTest < ActionController::TestCase
 
   test "user course creation should fail" do
     user_signin
-
     initialNumberCourses = Course.count
     number = "161"
     title = "Functional"
