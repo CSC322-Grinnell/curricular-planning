@@ -3,8 +3,6 @@ class DashboardController < ApplicationController
   before_filter :authenticate_user!
   
   def get
-    puts "---------------------------"
-    puts flash[:all_semesters]
     if User.current_user.has_role?(:admin) and flash[:all_semesters] 
       @semesters = Semester.all
       @all_semesters = true
@@ -39,7 +37,7 @@ class DashboardController < ApplicationController
       when "deleteCourse"
         flash[:notice] = "Course Deleted" if handleDeleteCourse
       when "archiveSemesterToggle"
-        flash[:notice] = "Semester Archived" if handleArchiveSemesterToggle
+        flash[:notice] = "Semester Archive Changed" if handleArchiveSemesterToggle
       end
       flash[:all_semesters] = (params[:all_semesters] == 'true')
     end

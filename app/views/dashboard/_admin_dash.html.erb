@@ -17,7 +17,7 @@
                 { action: "post", 
                   request: "archiveSemesterToggle", 
                   id: semester.id,
-                  all_semesters: !@all_semesters
+                  all_semesters: @all_semesters
                 },
                 class: 'btn btn-xs ' + (semester.archived ? "btn-warning" : "btn-danger") %>
         </span>
@@ -84,7 +84,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_tag(class: "form-horizontal") do %>
-        <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
+        <%= hidden_field_tag(:all_semesters, @all_semesters) %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">New Semester</h4>
@@ -139,7 +139,7 @@
                           { action: "post", 
                             request: "deleteCourse", 
                             id: course.id,
-                            all_semesters: !@all_semesters
+                            all_semesters: @all_semesters
                           },
                           class: 'btn btn-default btn-sm' %>
                 </td>
@@ -150,7 +150,7 @@
     
         <h4>New Course</h4>
         <%= form_tag() do %>
-          <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
+          <%= hidden_field_tag(:all_semesters, @all_semesters) %>
           <%= label_tag(:course_number, "Course Number:") %>
           <%= text_field_tag(:course_number) %><br/>
           <%= label_tag(:title, "Title:") %>
@@ -177,7 +177,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%= form_tag(class: "form-horizontal") do %>
-        <%= hidden_field_tag(:all_semesters, !@all_semesters) %>
+        <%= hidden_field_tag(:all_semesters, @all_semesters) %>
         <%= hidden_field_tag(:request, "newOffering") %>
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
