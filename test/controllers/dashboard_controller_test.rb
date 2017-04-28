@@ -7,6 +7,46 @@ class DashboardControllerTest < ActionController::TestCase
   test "admin course creation should be successful" do
     admin_signin
 
+    number = "161"
+    title = "Functional"
+    description = "description"
+    required = true
+    course = Course.new(course_number:number, title: title, description: description, required: required)
+    assert course.save
+
+    initialNumberCourses = Course.count
+    post :post,
+      request: "deleteCourse",
+      id: course.id
+    assert_response :found
+    assert_equal initialNumberCourses - 1, Course.count
+    assert_nil Course.find_by(course_number: number, title: title, description: description, required: required)
+  end
+
+  test "user course creation should fail" do
+    user_signin
+
+    number = "161"
+    title = "Functional"
+    description = "description"
+    required = true
+    course = Course.new(course_number:number, title: title, description: description, required: required)
+    assert course.save
+
+    initialNumberCourses = Course.count
+    post :post,
+      request: "deleteCourse",
+      id: course.id
+    assert_response :found
+    assert_equal initialNumberCourses, Course.count
+    assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
+  end
+
+  test "admin course deletion should be successful" do
+    admin_signin
+
+    Course.new
+
     initialNumberCourses = Course.count
     number = "161"
     title = "Functional"
@@ -23,7 +63,7 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
-  test "user course creation should fail" do
+  test "user course deletion should fail" do
     user_signin
 
     initialNumberCourses = Course.count
