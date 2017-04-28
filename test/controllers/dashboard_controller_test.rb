@@ -4,11 +4,7 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
-  def admin_signin
-    @user = User.create(email:"fixture@test.com", password: Devise::Encryptor.digest(User, "helloworld"))
-    @user.add_role :admin
-    sign_in @user
-  end
+
 
   def user_signin
     @user = User.create(email:"student@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
