@@ -4,17 +4,21 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
-
-
-  def user_signin
-    @user = User.create(email:"student@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
-    sign_in @user
-  end
-
   test "Student Interest Input: Properly formed POST request" do
+    oid = Offering.all[0].id
+
+    user_signin
     post :post,
-      request: "pickCourse"
+      request: "pickCourse",
+      offerings: {"#{oid}":"1"}
     assert_response :found
+    assert @user.offering.include? Offering.all[0]
+    post :post,
+      request: "pickCourse",
+      offerings: {"#{oid}":"0"} 
+
+    assert_response :found
+    assert (not @user.offering.include? Offering.all[0])
   end
 
   test "Admin: POST Course Create Successful" do
