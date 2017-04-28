@@ -56,6 +56,20 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
   end
 
+  test "user semester creation should fail" do
+    user_signin
+
+    initialNumberSemesters = Semester.count
+    testYear = "2017"
+    testTerm = "Spring"
+    post :post,
+      request: "newSemester",
+      term: testTerm,
+      year: testYear
+    assert_response :found
+    assert_equal initialNumberSemesters, Semester.count
+  end
+
   test "admin offering creation should be successful" do
     admin_signin
 
@@ -76,5 +90,26 @@ class DashboardControllerTest < ActionController::TestCase
     assert_equal initialNumberOfferings + 1, Offering.count
     assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
+
+  test "user offering creation should fail" do
+    user_signin
+
+    initialNumberOfferings = Offering.count
+    professor = "Prof"
+    time = "in the morning"
+    capacity = 25
+    course = Course.all[0].id
+    semester = Semester.all[0].id
+    post :post,
+      request: "newOffering",
+      professor: professor,
+      time: time,
+      capacity: capacity,
+      course: course,
+      semester: semester
+    assert_response :found
+    assert_equal initialNumberOfferings, Offering.count
+  end
+
 
 end
