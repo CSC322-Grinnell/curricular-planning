@@ -14,7 +14,7 @@ Minitest::Reporters.use!(
   Minitest.backtrace_filter)
 
 def admin_signin
-  @user = User.create(email:"fixture@test.com", password: Devise::Encryptor.digest(User, "helloworld"))
+  @user = User.create(email:"fixture@grinnell.edu", password: Devise::Encryptor.digest(User, "helloworld"))
   @user.add_role :admin
   sign_in @user
 end
