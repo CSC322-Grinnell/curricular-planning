@@ -4,9 +4,7 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
-
-
-  test "A properly formatted POST request to the DashboardController should create a corresponding Course" do
+  test "admin course creation should be successful" do
     admin_signin
 
     initialNumberCourses = Course.count
@@ -25,7 +23,25 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
-  test "A properly formatted POST request to the DashboardController should create a corresponding semester" do
+  test "user course creation should fail" do
+    user_signin
+
+    initialNumberCourses = Course.count
+    number = "161"
+    title = "Functional"
+    description = "description"
+    required = true
+    post :post,
+      request: "newCourse",
+      course_number: number,
+      title: title,
+      description: description,
+      required: required
+    assert_response :found
+    assert_equal initialNumberCourses, Course.count
+  end
+
+  test "admin semester creation should be successful" do
     admin_signin
 
     initialNumberSemesters = Semester.count
@@ -40,7 +56,7 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
   end
 
-  test "A properly formatted POST request to the DashboardController should create a corresponding Offering" do
+  test "admin offering creation should be successful" do
     admin_signin
 
     initialNumberOfferings = Offering.count
