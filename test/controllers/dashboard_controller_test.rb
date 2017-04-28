@@ -4,7 +4,7 @@ class DashboardControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
   tests DashboardController
 
-  test "admin course creation should be successful" do
+  test "admin course deletion should be successful" do
     admin_signin
 
     number = "161"
@@ -23,9 +23,7 @@ class DashboardControllerTest < ActionController::TestCase
     assert_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
-  test "user course creation should fail" do
-    user_signin
-
+  test "user course deletion should fail" do
     number = "161"
     title = "Functional"
     description = "description"
@@ -33,6 +31,7 @@ class DashboardControllerTest < ActionController::TestCase
     course = Course.new(course_number:number, title: title, description: description, required: required)
     assert course.save
 
+    user_signin
     initialNumberCourses = Course.count
     post :post,
       request: "deleteCourse",
@@ -42,10 +41,8 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
-  test "admin course deletion should be successful" do
+  test "admin course creation should be successful" do
     admin_signin
-
-    Course.new
 
     initialNumberCourses = Course.count
     number = "161"
@@ -63,7 +60,7 @@ class DashboardControllerTest < ActionController::TestCase
     assert_not_nil Course.find_by(course_number: number, title: title, description: description, required: required)
   end
 
-  test "user course deletion should fail" do
+  test "user course creation should fail" do
     user_signin
 
     initialNumberCourses = Course.count
@@ -94,6 +91,28 @@ class DashboardControllerTest < ActionController::TestCase
     assert_response :found
     assert_equal initialNumberSemesters + 1, Semester.count
     assert_not_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
+  end
+
+  test "admin semester deletion should be successful" do
+    testYear = "2017"
+    testTerm = "Spring"
+
+    semester = Semester.new(academic_year: testYear, academic_term: testTerm) 
+    assert semester.save
+
+    admin_signin
+
+    initialNumberSemesters = Semester.count
+    post :post,
+      request: "deleteSemester",
+      id: semester.id
+    assert_equal initialNumberSemesters - 1, Semester.count
+    assert_nil Semester.find_by(academic_term: testTerm, academic_year: testYear)
+  end
+
+  test "user semester deletion should fail" do
+
+    user_signin
   end
 
   test "user semester creation should fail" do
