@@ -183,5 +183,50 @@ class DashboardControllerTest < ActionController::TestCase
     assert_equal initialNumberOfferings, Offering.count
   end
 
+  test "admin offering deletion should be successful" do
 
+    professor = "Prof"
+    time = "in the morning"
+    capacity = 25
+    course = Course.all[0]
+    semester = Semester.all[0]
+
+    offering = Offering.new(professor: professor, time:time, capacity:capacity)
+    offering.semester = semester
+    offering.course = course
+    
+    assert offering.save
+
+    initialNumberOfferings = Offering.count
+    admin_signin
+
+    post :post,
+      request: "deleteOffering",
+      id: offering.id
+    assert_equal initialNumberOfferings - 1,Offering.count 
+    assert_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
+  end
+
+  test "user offering deletion should fail" do
+    professor = "Prof"
+    time = "in the morning"
+    capacity = 25
+    course = Course.all[0]
+    semester = Semester.all[0]
+
+    offering = Offering.new(professor: professor, time:time, capacity:capacity)
+    offering.semester = semester
+    offering.course = course
+    
+    assert offering.save
+
+    initialNumberOfferings = Offering.count
+    user_signin
+
+    post :post,
+      request: "deleteOffering",
+      id: offering.id
+    assert_equal initialNumberOfferings,Offering.count 
+    assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
+  end
 end
