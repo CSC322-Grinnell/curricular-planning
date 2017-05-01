@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get '/offering/:id', to: 'offering#index'
+
+  get 'offering/edit'
+
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
 
