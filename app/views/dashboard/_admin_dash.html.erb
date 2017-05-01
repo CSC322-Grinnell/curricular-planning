@@ -37,7 +37,11 @@
             <td><%= offering.professor %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td><%= offering.user.count %> / <%= offering.capacity %></td>
+            <td>
+              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalNewOffering">
+                <%= offering.user.count %> / <%= offering.capacity.to_s %>
+              </button>
+            </td>
             <td><%= button_to "Delete", 
                       { action: "post", 
                         request: "deleteOffering", 
@@ -141,7 +145,7 @@
                             id: course.id,
                             all_semesters: @all_semesters
                           },
-                          class: 'btn btn-default btn-sm' %>
+                          class: 'btn btn-danger btn-sm' %>
                 </td>
               </tr>
             <% end %>
@@ -203,7 +207,7 @@
           </div>
           <div class="form-group">
             <%= label_tag(:semester, "Semester", class: "control-label") %>
-            <%= collection_select(nil, :semester, Semester.order(:academic_year), :id, :getName, {}, {:class => "form-control"}) %>
+            <%= collection_select(nil, :semester, Semester.getUnarchivedSemesters, :id, :getName, {}, {:class => "form-control"}) %>
           </div>
         </div>
         <div class="modal-footer">
