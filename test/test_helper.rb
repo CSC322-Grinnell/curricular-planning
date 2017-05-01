@@ -13,11 +13,6 @@ Minitest::Reporters.use!(
   ENV,
   Minitest.backtrace_filter)
 
-def user_signin
-  @user = User.create(email:"user@test.com", password: Devise::Encryptor.digest(User, "helloworld"))
-  sign_in @user
-end
-
 def admin_signin
   @user = User.create(email:"fixture@grinnell.edu", password: Devise::Encryptor.digest(User, "helloworld"))
   @user.add_role :admin
@@ -28,6 +23,16 @@ def user_signin
   @user = User.create(email:"student@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
   sign_in @user
 end
+
+def correct_domain_signup
+  @user = User.create(email:"example@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
+  sign_in @user
+end 
+
+def erroneous_domain_signup
+  @user = User.create(email:"example@bad.com", password: Devise::Encryptor.digest(User, "password"))
+  sign_in @user
+end 
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
