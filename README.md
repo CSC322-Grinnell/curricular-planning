@@ -4,12 +4,12 @@
 
 ## Authors
 
-* Alex
-* Mari
-* Jonathan
-* Otabek
-* Corey
-* Prabir
+* Alex Mitchell
+* Marija Ivica
+* Jonathan Ackmann
+* Otabek Nazarov
+* Corey Simmonds 
+* Prabir Pradhan 
 
 ## Setup Instructions
 1. Clone this repository.
@@ -18,25 +18,27 @@
 4. `rails s` to start server
 
 ## Issues During Development
-* *Rails Error: "action controller doesn't recognize term input"*
+   *Rails Error: "action controller doesn't recognize term input"*
    * Run `rake db:drop db:create db:migrate`
+   * 
 
-## Info
+## Instructions for deployment
+    * setup account email confirmation: 
+        in `/config/environments/development.rb` remove: 
 
-* Ruby version `Rails 4.1.8`
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+        ```
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+        ```
+        
+        in `/config/environments/production.rb` add:
+        
+        ```
+        config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
+        config.action_mailer.delivery_method = :smtp
+        config.action_mailer.smtp_settings = {
+            :address => "127.0.0.1",
+            :port    => 25,
+            :domain  => 'yourdomain.com'
+        }
+        ```
