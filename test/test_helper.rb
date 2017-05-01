@@ -24,7 +24,7 @@ def user_signin
   sign_in @user
 end
 
-def correct_domain_singup
+def correct_domain_signup
   @user = User.create(email:"example@grinnell.edu", password: Devise::Encryptor.digest(User, "password"))
   sign_in @user
 end 
