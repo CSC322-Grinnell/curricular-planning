@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
+  get '/offering', to: 'offering#index'
   get '/offering/:id', to: 'offering#index'
+  post '/offering', to: 'offering#post'
 
   get 'offering/edit'
 

@@ -1,11 +1,14 @@
 <% provide(:title, "Offering") %>
 
 <h1>Offering Info</h1>
+
+
 <div class="row">
+  <div class="col-md-2"></div>
   <div class="col-md-3">
-    <%= form_tag(class: "form-horizontal") do %>
-      <%= hidden_field_tag(:all_semesters, @all_semesters) %>
-      <%= hidden_field_tag(:request, "newOffering") %>
+    <%= form_tag("/offering", class: "form-horizontal") do %>
+      <%= hidden_field_tag(:request, "editOffering") %>
+      <%= hidden_field_tag(:id, @offering.id) %>
       <h3>Edit Offering</h3>
       
       <div class="form-group">
@@ -30,8 +33,17 @@
       </div>
       <%= submit_tag "Save", class: "btn btn-primary" %>
     <% end %>
+    <br/>
+    <%= button_to "Delete", 
+          { action: "post",
+            controller: "dashboard",
+            request: "deleteOffering", 
+            id: @offering.id,
+          },
+          class: 'btn btn-danger center' %>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-2"></div>
+  <div class="col-md-3">
     <h3>Users Signed up for this course</h3>
     <table class="table table-hover">
       <tr>
@@ -44,5 +56,6 @@
       <% end %>
     </table>
   </div>
+  <div class="col-md-2"></div>
 </div>
 
