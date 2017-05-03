@@ -39,17 +39,10 @@
             <td><%= offering.section.to_s.rjust(2, '0') %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td>
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalNewOffering">
-                <%= offering.user.count %> / <%= offering.capacity.to_s %>
-              </button>
+            <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
             </td>
-            <td><%= button_to "Delete", 
-                      { action: "post", 
-                        request: "deleteOffering", 
-                        id: offering.id,
-                        all_semesters: !@all_semesters
-                      },
+            <td><%= link_to  "Info", 
+                      offering_detail_link(offering),
                       class: 'btn btn-default btn-sm' %>
             </td>
           </tr>
