@@ -1,0 +1,63 @@
+<% provide(:title, "Offering") %>
+
+<h1>Offering Info</h1>
+
+<div class="center">
+    <%= button_to "Delete Offering", 
+          { action: "post",
+            controller: "dashboard",
+            request: "deleteOffering", 
+            id: @offering.id,
+          },
+          class: 'btn btn-danger center' %>
+    <br/>
+</div>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-3">
+    <%= form_tag("/offering", class: "form-horizontal") do %>
+      <%= hidden_field_tag(:request, "editOffering") %>
+      <%= hidden_field_tag(:id, @offering.id) %>
+      <h3>Edit Offering</h3>
+      
+      <div class="form-group">
+        <%= label_tag(:professor, "Professor", class: "control-label") %>
+        <%= text_field_tag(:professor, nil, class: "form-control", value: @offering.professor) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:time, "Time", class: "control-label") %>
+        <%= text_field_tag(:time, nil, class: "form-control", value: @offering.time) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:capacity, "Capacity", class: "control-label") %>
+        <%= number_field_tag(:capacity, 25, min: 0, step: 1, class: "form-control", value: @offering.capacity) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:course, "Course", class: "control-label") %>
+        <%= collection_select(nil, :course, Course.order(:course_number), :id, :getName, {}, {:class => "form-control", value: @offering.course.id}) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:semester, "Semester", class: "control-label") %>
+        <%= collection_select(nil, :semester, Semester.getUnarchivedSemesters, :id, :getName, {}, {:class => "form-control", value: @offering.semester.id}) %>
+      </div>
+      <%= submit_tag "Save", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+  <div class="col-md-3">
+    <h3>Users Planning to Take</h3>
+    <table class="table table-hover">
+      <tr>
+        <th>User Email</th>
+      </tr>
+      <% @offering.user.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+

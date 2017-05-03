@@ -13,6 +13,7 @@
           <tr>
             <th>Class</th>
             <th>Professor</th>
+            <th>Section</th>
             <th>Time</th>
             <th>Required?</th>
             <th>Interest</th>
@@ -42,6 +43,7 @@
                 </div>
               </td>
               <td><%= offering.professor %></td>
+              <td><%= offering.section.to_s.rjust(2, '0') %></td>
               <td><%= offering.time %></td>
               <td><%= offering.course.required ? "Yes" : "No"%></td>
               <td><%= offering.user.count %> / <%= offering.capacity %></td>

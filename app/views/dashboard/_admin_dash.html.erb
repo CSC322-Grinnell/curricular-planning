@@ -27,6 +27,7 @@
         <tr>
           <th>Class</th>
           <th>Professor</th>
+          <th>Section</th>
           <th>Time</th>
           <th>Required?</th>
           <th>Interest</th>
@@ -56,19 +57,13 @@
               </div>
             </td>
             <td><%= offering.professor %></td>
+            <td><%= offering.section.to_s.rjust(2, '0') %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td>
-              <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#modalNewOffering">
-                <%= offering.user.count %> / <%= offering.capacity.to_s %>
-              </button>
+            <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
             </td>
-            <td><%= button_to "Delete", 
-                      { action: "post", 
-                        request: "deleteOffering", 
-                        id: offering.id,
-                        all_semesters: !@all_semesters
-                      },
+            <td><%= link_to  "Info", 
+                      offering_detail_link(offering),
                       class: 'btn btn-default btn-sm' %>
             </td>
           </tr>
@@ -213,6 +208,10 @@
           <div class="form-group">
             <%= label_tag(:professor, "Professor", class: "control-label") %>
             <%= text_field_tag(:professor, nil, class: "form-control") %>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:section, "Section ", class: "control-label") %>
+            <%= text_field_tag(:section, 99, min:1, step: 1, class: "form-control") %>
           </div>
           <div class="form-group">
             <%= label_tag(:time, "Time", class: "control-label") %>
