@@ -23,10 +23,11 @@ class OfferingController < ApplicationController
   private
 
   def handleEditOffering
-    requiredParams = [:professor, :time, :capacity, :course, :semester]
+    requiredParams = [:professor, :section, :time, :capacity, :course, :semester]
     # check if all required parameters are present
     if requiredParams.reduce(true) {|val,x| val and params.require(x)}
       @offering.professor= params[:professor]
+      @offering.section= params[:section]
       @offering.time= params[:time]
       @offering.capacity= params[:capacity].to_i
       @offering.semester = Semester.find(params[:semester])

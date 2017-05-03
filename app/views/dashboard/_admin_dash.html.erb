@@ -25,8 +25,8 @@
       <table class="table table-hover">
         <tr>
           <th>Class</th>
+          <th>Title</th>
           <th>Professor</th>
-          <th>Section</th>
           <th>Time</th>
           <th>Required?</th>
           <th>Interest</th>
@@ -34,9 +34,9 @@
         </tr>
         <% semester.offering.each do |offering| %>
           <tr>
-            <td><%= offering.course.getName %></td>
+            <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
+            <td><%= offering.course.title %></td>
             <td><%= offering.professor %></td>
-            <td><%= offering.section.to_s.rjust(2, '0') %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
             <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
@@ -190,7 +190,7 @@
           </div>
           <div class="form-group">
             <%= label_tag(:section, "Section ", class: "control-label") %>
-            <%= text_field_tag(:section, 99, min:1, step: 1, class: "form-control") %>
+            <%= number_field_tag(:section, 1, min:1, max:99, step: 1, class: "form-control") %>
           </div>
           <div class="form-group">
             <%= label_tag(:time, "Time", class: "control-label") %>

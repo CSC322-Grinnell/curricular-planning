@@ -11,8 +11,8 @@
         <table class="table table-hover">
           <tr>
             <th>Class</th>
+            <th>Title</th>
             <th>Professor</th>
-            <th>Section</th>
             <th>Time</th>
             <th>Required?</th>
             <th>Interest</th>
@@ -20,9 +20,9 @@
           </tr>
           <% semester.offering.each do |offering| %>
             <tr>
-              <td><%= offering.course.getName %></td>
+              <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
+              <td><%= offering.course.title %></td>
               <td><%= offering.professor %></td>
-              <td><%= offering.section.to_s.rjust(2, '0') %></td>
               <td><%= offering.time %></td>
               <td><%= offering.course.required ? "Yes" : "No"%></td>
               <td><%= offering.user.count %> / <%= offering.capacity %></td>
