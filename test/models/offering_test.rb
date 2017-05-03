@@ -21,6 +21,10 @@ class OfferingTest < ActiveSupport::TestCase
     assert_not o.valid?
 
     o = getValidOffering
+    o.section = nil
+    assert_not o.valid?
+
+    o = getValidOffering
     o.time= nil
     assert_not o.valid?
 

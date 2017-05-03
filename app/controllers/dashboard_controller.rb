@@ -66,10 +66,11 @@ class DashboardController < ApplicationController
   end
 
   def handleNewOffering
-    requiredParams = [:professor, :time, :capacity, :course, :semester]
+    requiredParams = [:professor, :section, :time, :capacity, :course, :semester]
     # check if all required parameters are present
     if requiredParams.reduce(true) {|val,x| val and params.require(x)}
       offering = Offering.new(professor: params[:professor],
+                          section: params[:section],
                           time: params[:time],
                           capacity: params[:capacity].to_i)
       offering.semester = Semester.find(params[:semester])

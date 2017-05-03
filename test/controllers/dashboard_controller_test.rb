@@ -23,7 +23,7 @@ class DashboardControllerTest < ActionController::TestCase
     title = "Functional"
     description = "description"
     required = true
-    course = Course.new(course_number:number, title: title, description: description, required: required)
+    course = Course.new(course_number: number, title: title, description: description, required: required)
     assert course.save
 
     initialNumberCourses = Course.count
@@ -40,7 +40,7 @@ class DashboardControllerTest < ActionController::TestCase
     title = "Functional"
     description = "description"
     required = true
-    course = Course.new(course_number:number, title: title, description: description, required: required)
+    course = Course.new(course_number: number, title: title, description: description, required: required)
     assert course.save
 
     user_signin
@@ -179,6 +179,7 @@ class DashboardControllerTest < ActionController::TestCase
     admin_signin
 
     initialNumberOfferings = Offering.count
+    section = 01
     professor = "Prof"
     time = "in the morning"
     capacity = 25
@@ -187,19 +188,21 @@ class DashboardControllerTest < ActionController::TestCase
     post :post,
       request: "newOffering",
       professor: professor,
+      section: section,
       time: time,
       capacity: capacity,
       course: course,
       semester: semester
     assert_response :found
     assert_equal initialNumberOfferings + 1, Offering.count
-    assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course, semester_id: semester)
+    assert_not_nil Offering.find_by(professor: professor, section: section, time: time, capacity: capacity, course_id: course, semester_id: semester)
   end
 
   test "user offering creation should fail" do
     user_signin
 
     initialNumberOfferings = Offering.count
+    section = 01
     professor = "Prof"
     time = "in the morning"
     capacity = 25
@@ -208,6 +211,7 @@ class DashboardControllerTest < ActionController::TestCase
     post :post,
       request: "newOffering",
       professor: professor,
+      section: section,
       time: time,
       capacity: capacity,
       course: course,
@@ -219,12 +223,13 @@ class DashboardControllerTest < ActionController::TestCase
   test "admin offering deletion should be successful" do
 
     professor = "Prof"
+    section = 01
     time = "in the morning"
     capacity = 25
     course = Course.all[0]
     semester = Semester.all[0]
 
-    offering = Offering.new(professor: professor, time:time, capacity:capacity)
+    offering = Offering.new(professor: professor, section: section, time: time, capacity: capacity)
     offering.semester = semester
     offering.course = course
     
@@ -237,17 +242,18 @@ class DashboardControllerTest < ActionController::TestCase
       request: "deleteOffering",
       id: offering.id
     assert_equal initialNumberOfferings - 1,Offering.count 
-    assert_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
+    assert_nil Offering.find_by(professor: professor, section: section, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
   end
 
   test "user offering deletion should fail" do
     professor = "Prof"
+    section = 01
     time = "in the morning"
     capacity = 25
     course = Course.all[0]
     semester = Semester.all[0]
 
-    offering = Offering.new(professor: professor, time:time, capacity:capacity)
+    offering = Offering.new(professor: professor, section: section, time: time, capacity: capacity)
     offering.semester = semester
     offering.course = course
     
@@ -260,6 +266,6 @@ class DashboardControllerTest < ActionController::TestCase
       request: "deleteOffering",
       id: offering.id
     assert_equal initialNumberOfferings,Offering.count 
-    assert_not_nil Offering.find_by(professor: professor, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
+    assert_not_nil Offering.find_by(professor: professor, section: section, time: time, capacity: capacity, course_id: course.id, semester_id: semester.id)
   end
 end
