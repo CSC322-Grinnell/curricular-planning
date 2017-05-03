@@ -36,7 +36,7 @@
           <tr>
             <td><%= offering.course.getName %></td>
             <td><%= offering.professor %></td>
-            <td><%= offering.section %></td>
+            <td><%= offering.section.to_s.rjust(2, '0') %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
             <td>
