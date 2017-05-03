@@ -7,6 +7,7 @@
 </div>
 
 <% semesterCount = 1 %>
+<% courseCount = 0 %>
 <div class="row">
   <% @semesters.each do |semester| %>
     <div class="col-md-6">
@@ -33,7 +34,27 @@
         </tr>
         <% semester.offering.each do |offering| %>
           <tr>
-            <td><%= offering.course.getName %></td>
+            <td>
+              <!--This td statement includes the information for creating a 
+              popover displaying the course info above the course name-->
+              <div>
+                <% courseCount = courseCount + 1 %>
+                <span class="mypopover<%= courseCount %>">
+                  <%= offering.course.getName %>
+                </span>
+                
+                <script>
+                  $(function() {
+                    $(".mypopover<%= courseCount %>").popover({
+                      trigger: "hover",
+                      delay: 500,
+                      content: "<%=offering.course.description %>",
+                      placement: "top"
+                    });
+                  });
+                </script>
+              </div>
+            </td>
             <td><%= offering.professor %></td>
             <td><%= offering.time %></td>
             <td><%= offering.course.required ? "Yes" : "No"%></td>
