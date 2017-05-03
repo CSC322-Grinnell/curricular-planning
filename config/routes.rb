@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  
+  get "/pages/*page" => "pages#show"
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
 
-  # root 'dashboard#get'
+   root "pages#show", page: "index"
   
   devise_scope :user do
   #  root to: 'home#index'
