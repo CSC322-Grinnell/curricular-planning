@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'course/index'
+
+  get 'course/edit'
+
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
 
