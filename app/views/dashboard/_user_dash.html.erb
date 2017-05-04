@@ -1,4 +1,5 @@
 <% semesterCount = 1 %>
+<% courseCount = 0 %>
 
 <%= form_tag() do %>
   <%= hidden_field_tag(:request, "pickCourse") %>
@@ -20,7 +21,27 @@
           </tr>
           <% semester.offering.each do |offering| %>
             <tr>
-              <td><%= offering.course.getName %></td>
+              <td>
+                <!--This td statement includes the information for creating a 
+                popover displaying the course info above the course name-->
+                <div>
+                  <% courseCount = courseCount + 1 %>
+                  <span class="mypopover<%= courseCount %>">
+                    <%= offering.course.getName %>
+                  </span>
+                  
+                  <script>
+                    $(function() {
+                      $(".mypopover<%= courseCount %>").popover({
+                        trigger: "hover",
+                        delay: 500,
+                        content: "<%=offering.course.description %>",
+                        placement: "top"
+                      });
+                    });
+                  </script>
+                </div>
+              </td>
               <td><%= offering.professor %></td>
               <td><%= offering.section.to_s.rjust(2, '0') %></td>
               <td><%= offering.time %></td>
