@@ -13,4 +13,8 @@ class Semester < ActiveRecord::Base
   def getName 
     return academic_term + " " + academic_year
   end
+  
+  def self.getUnarchivedSemesters
+    Semester.where(archived: false).order(:academic_year, :academic_term)
+  end
 end

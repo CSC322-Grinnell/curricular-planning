@@ -25,6 +25,7 @@
       <table class="table table-hover">
         <tr>
           <th>Class</th>
+          <th>Title</th>
           <th>Professor</th>
           <th>Time</th>
           <th>Required?</th>
@@ -32,21 +33,36 @@
           <th>Admin</th>
         </tr>
         <% semester.offering.each do |offering| %>
-          <tr>
-            <td><%= offering.course.getName %></td>
-            <td><%= offering.professor %></td>
-            <td><%= offering.time %></td>
-            <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td><%= offering.user.count %> / <%= offering.capacity %></td>
-            <td><%= button_to "Delete", 
-                      { action: "post", 
-                        request: "deleteOffering", 
-                        id: offering.id,
-                        all_semesters: !@all_semesters
-                      },
-                      class: 'btn btn-default btn-sm' %>
-            </td>
-          </tr>
+        <!--This td statement includes the information for creating a 
+            popover displaying the course info above the course name-->
+          <div>
+              <tr>
+                <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
+                <td>
+                  <span class="mypopover<%= offering.id %>">
+                    <%= offering.course.title %>
+                  </span>
+                  <script>
+                    $(function() {
+                      $(".mypopover<%= offering.id %>").popover({
+                        trigger: "hover",
+                        content: "<%=offering.course.description %>",
+                        placement: "right"
+                      });
+                    });
+                  </script>
+                </td>
+                <td><%= offering.professor %></td>
+                <td><%= offering.time %></td>
+                <td><%= offering.course.required ? "Yes" : "No"%></td>
+                <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
+                </td>
+                <td><%= link_to  "Info", 
+                          offering_detail_link(offering),
+                          class: 'btn btn-default btn-sm' %>
+                </td>
+              </tr>
+          </div>
         <% end %>
       </table>
     </div>
@@ -135,6 +151,7 @@
                 <td><%= course.title %></td>
                 <td><%= course.description %></td>
                 <td><%= course.required ? "Yes" : "No"%></td>
+
                 <td><%= link_to "Edit", course_detail_link(course),
                         class: 'btn btn-default btn-sm' %>
                 <td>
@@ -190,6 +207,10 @@
             <%= text_field_tag(:professor, nil, class: "form-control") %>
           </div>
           <div class="form-group">
+            <%= label_tag(:section, "Section ", class: "control-label") %>
+            <%= number_field_tag(:section, 1, min:1, max:99, step: 1, class: "form-control") %>
+          </div>
+          <div class="form-group">
             <%= label_tag(:time, "Time", class: "control-label") %>
             <%= text_field_tag(:time, nil, class: "form-control") %>
           </div>
@@ -203,7 +224,7 @@
           </div>
           <div class="form-group">
             <%= label_tag(:semester, "Semester", class: "control-label") %>
-            <%= collection_select(nil, :semester, Semester.order(:academic_year), :id, :getName, {}, {:class => "form-control"}) %>
+            <%= collection_select(nil, :semester, Semester.getUnarchivedSemesters, :id, :getName, {}, {:class => "form-control"}) %>
           </div>
         </div>
         <div class="modal-footer">
