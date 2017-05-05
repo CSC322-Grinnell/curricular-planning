@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  
+  root 'home#index'
+
   get '/offering', to: 'offering#index'
   get '/offering/:id', to: 'offering#index'
   post '/offering', to: 'offering#post'
@@ -6,7 +9,6 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations" }
   # See how all your routes lay out with "rake routes".
 
-  # root 'dashboard#get'
   
   devise_scope :user do
   #  root to: 'home#index'
