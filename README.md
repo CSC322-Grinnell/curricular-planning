@@ -29,28 +29,25 @@
 
 ### Additional Development Environment Configuration
 #### Issues During Development
-  *Rails Error: "action controller doesn't recognize term input"*
+  * Rails Error: *"action controller doesn't recognize term input"*
     * Run `rake db:drop db:create db:migrate`
 
 ### Additional Production Environment Configuration
-    * By default, Rails will listen on port 3000.
-      * Use `ModProxy` on Apache or similar to forward traffic from existing infrastructure
-    * Configure mailer subsystem for user email confirmation: 
-        1. in `/config/environments/development.rb` remove: 
-
-        ```
-        config.action_mailer.delivery_method = :smtp
-        config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
-        ```
-        
-        2. in `/config/environments/production.rb` add:
-        
-        ```
-        config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
-        config.action_mailer.delivery_method = :smtp
-        config.action_mailer.smtp_settings = {
-            :address => "127.0.0.1",
-            :port    => 25,
-            :domain  => 'yourdomain.com'
-        }
-        ```
+  * By default, Rails will listen on port 3000.
+    * Use `ModProxy` on Apache or similar to forward traffic from existing infrastructure
+  * Configure mailer subsystem for user email confirmation: 
+    1. in `/config/environments/development.rb` remove: 
+    ```
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {:address => "localhost", :port => 1025}
+    ```
+    2. in `/config/environments/production.rb` add:
+    ```
+      config.action_mailer.default_url_options = {:host => 'yourdomain.com'}
+      config.action_mailer.delivery_method = :smtp
+      config.action_mailer.smtp_settings = {
+          :address => "127.0.0.1",
+          :port    => 25,
+          :domain  => 'yourdomain.com'
+      }
+    ```
