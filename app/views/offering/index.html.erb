@@ -22,8 +22,20 @@
       <h3>Edit Offering</h3>
       
       <div class="form-group">
+        <%= label_tag(:course, "Course", class: "control-label") %>
+        <%= collection_select(nil, :course, Course.order(:course_number), :id, :getName, {selected: @offering.course.id}, {:class => "form-control"}) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:semester, "Semester", class: "control-label") %>
+        <%= collection_select(nil, :semester, Semester.getUnarchivedSemesters, :id, :getName, {selected: @offering.semester.id}, {:class => "form-control"}) %>
+      </div>
+      <div class="form-group">
         <%= label_tag(:professor, "Professor", class: "control-label") %>
         <%= text_field_tag(:professor, nil, class: "form-control", value: @offering.professor) %>
+      </div>
+      <div class="form-group">
+        <%= label_tag(:section, "Section ", class: "control-label") %>
+        <%= number_field_tag(:section, @offering.section, min:1, step: 1, class: "form-control", value: @offering.section) %>
       </div>
       <div class="form-group">
         <%= label_tag(:time, "Time", class: "control-label") %>
@@ -32,14 +44,6 @@
       <div class="form-group">
         <%= label_tag(:capacity, "Capacity", class: "control-label") %>
         <%= number_field_tag(:capacity, 25, min: 0, step: 1, class: "form-control", value: @offering.capacity) %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:course, "Course", class: "control-label") %>
-        <%= collection_select(nil, :course, Course.order(:course_number), :id, :getName, {}, {:class => "form-control", value: @offering.course.id}) %>
-      </div>
-      <div class="form-group">
-        <%= label_tag(:semester, "Semester", class: "control-label") %>
-        <%= collection_select(nil, :semester, Semester.getUnarchivedSemesters, :id, :getName, {}, {:class => "form-control", value: @offering.semester.id}) %>
       </div>
       <%= submit_tag "Save", class: "btn btn-primary" %>
     <% end %>
