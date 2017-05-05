@@ -33,19 +33,36 @@
           <th>Admin</th>
         </tr>
         <% semester.offering.each do |offering| %>
-          <tr>
-            <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
-            <td><%= offering.course.title %></td>
-            <td><%= offering.professor %></td>
-            <td><%= offering.time %></td>
-            <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
-            </td>
-            <td><%= link_to  "Info", 
-                      offering_detail_link(offering),
-                      class: 'btn btn-default btn-sm' %>
-            </td>
-          </tr>
+        <!--This td statement includes the information for creating a 
+            popover displaying the course info above the course name-->
+          <div>
+              <tr>
+                <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
+                <td>
+                  <span class="mypopover<%= offering.id %>">
+                    <%= offering.course.title %>
+                  </span>
+                  <script>
+                    $(function() {
+                      $(".mypopover<%= offering.id %>").popover({
+                        trigger: "hover",
+                        content: "<%=offering.course.description %>",
+                        placement: "right"
+                      });
+                    });
+                  </script>
+                </td>
+                <td><%= offering.professor %></td>
+                <td><%= offering.time %></td>
+                <td><%= offering.course.required ? "Yes" : "No"%></td>
+                <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
+                </td>
+                <td><%= link_to  "Info", 
+                          offering_detail_link(offering),
+                          class: 'btn btn-default btn-sm' %>
+                </td>
+              </tr>
+          </div>
         <% end %>
       </table>
     </div>
