@@ -12,8 +12,8 @@
         <table class="table table-hover">
           <tr>
             <th>Class</th>
+            <th>Title</th>
             <th>Professor</th>
-            <th>Section</th>
             <th>Time</th>
             <th>Required?</th>
             <th>Interest</th>
@@ -21,29 +21,23 @@
           </tr>
           <% semester.offering.each do |offering| %>
             <tr>
+              
+              <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
               <td>
-                <!--This td statement includes the information for creating a 
-                popover displaying the course info above the course name-->
-                <div>
-                  <% courseCount = courseCount + 1 %>
-                  <span class="mypopover<%= courseCount %>">
-                    <%= offering.course.getName %>
-                  </span>
-                  
-                  <script>
-                    $(function() {
-                      $(".mypopover<%= courseCount %>").popover({
-                        trigger: "hover",
-                        delay: 500,
-                        content: "<%=offering.course.description %>",
-                        placement: "top"
-                      });
+                <span class="mypopover<%= offering.id %>">
+                  <%= offering.course.title %>
+                </span>
+                <script>
+                  $(function() {
+                    $(".mypopover<%= offering.id %>").popover({
+                      trigger: "hover",
+                      content: "<%=offering.course.description %>",
+                      placement: "right"
                     });
-                  </script>
-                </div>
+                  });
+                </script>
               </td>
               <td><%= offering.professor %></td>
-              <td><%= offering.section.to_s.rjust(2, '0') %></td>
               <td><%= offering.time %></td>
               <td><%= offering.course.required ? "Yes" : "No"%></td>
               <td><%= offering.user.count %> / <%= offering.capacity %></td>

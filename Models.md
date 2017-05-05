@@ -5,6 +5,7 @@
 ### Semester
 * `academic_year` : string
 * `academic_term` : string (ex. fall or spring)
+* `archived` : boolean
 * `offering`: [Offering]
 
 ### Course
@@ -18,6 +19,7 @@
 * `professor` : string
 * `time` : string
 * `capacity` : integer
+* `section` : integer
 * `course` : Course
 * `semester` : Semester
 * `students` : [Student]

@@ -7,7 +7,6 @@
 </div>
 
 <% semesterCount = 1 %>
-<% courseCount = 0 %>
 <div class="row">
   <% @semesters.each do |semester| %>
     <div class="col-md-6">
@@ -26,47 +25,44 @@
       <table class="table table-hover">
         <tr>
           <th>Class</th>
+          <th>Title</th>
           <th>Professor</th>
-          <th>Section</th>
           <th>Time</th>
           <th>Required?</th>
           <th>Interest</th>
           <th>Admin</th>
         </tr>
         <% semester.offering.each do |offering| %>
-          <tr>
-            <td>
-              <!--This td statement includes the information for creating a 
-              popover displaying the course info above the course name-->
-              <div>
-                <% courseCount = courseCount + 1 %>
-                <span class="mypopover<%= courseCount %>">
-                  <%= offering.course.getName %>
-                </span>
-                
-                <script>
-                  $(function() {
-                    $(".mypopover<%= courseCount %>").popover({
-                      trigger: "hover",
-                      delay: 500,
-                      content: "<%=offering.course.description %>",
-                      placement: "top"
+        <!--This td statement includes the information for creating a 
+            popover displaying the course info above the course name-->
+          <div>
+              <tr>
+                <td><%= offering.course.course_number %>-<%= format("%02d", offering.section) %></td>
+                <td>
+                  <span class="mypopover<%= offering.id %>">
+                    <%= offering.course.title %>
+                  </span>
+                  <script>
+                    $(function() {
+                      $(".mypopover<%= offering.id %>").popover({
+                        trigger: "hover",
+                        content: "<%=offering.course.description %>",
+                        placement: "right"
+                      });
                     });
-                  });
-                </script>
-              </div>
-            </td>
-            <td><%= offering.professor %></td>
-            <td><%= offering.section.to_s.rjust(2, '0') %></td>
-            <td><%= offering.time %></td>
-            <td><%= offering.course.required ? "Yes" : "No"%></td>
-            <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
-            </td>
-            <td><%= link_to  "Info", 
-                      offering_detail_link(offering),
-                      class: 'btn btn-default btn-sm' %>
-            </td>
-          </tr>
+                  </script>
+                </td>
+                <td><%= offering.professor %></td>
+                <td><%= offering.time %></td>
+                <td><%= offering.course.required ? "Yes" : "No"%></td>
+                <td><%= offering.user.count.to_s + " / " + offering.capacity.to_s %>
+                </td>
+                <td><%= link_to  "Info", 
+                          offering_detail_link(offering),
+                          class: 'btn btn-default btn-sm' %>
+                </td>
+              </tr>
+          </div>
         <% end %>
       </table>
     </div>
@@ -211,7 +207,7 @@
           </div>
           <div class="form-group">
             <%= label_tag(:section, "Section ", class: "control-label") %>
-            <%= text_field_tag(:section, 99, min:1, step: 1, class: "form-control") %>
+            <%= number_field_tag(:section, 1, min:1, max:99, step: 1, class: "form-control") %>
           </div>
           <div class="form-group">
             <%= label_tag(:time, "Time", class: "control-label") %>
