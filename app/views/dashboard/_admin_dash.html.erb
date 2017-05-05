@@ -135,14 +135,9 @@
                 <td><%= course.title %></td>
                 <td><%= course.description %></td>
                 <td><%= course.required ? "Yes" : "No"%></td>
-                <td><%= button_to "Delete", 
-                          { action: "post", 
-                            request: "deleteCourse", 
-                            id: course.id,
-                            all_semesters: @all_semesters
-                          },
-                          class: 'btn btn-default btn-sm' %>
-                </td>
+                <td><%= link_to "Edit", course_detail_link(course),
+                        class: 'btn btn-default btn-sm' %>
+                <td>
               </tr>
             <% end %>
         </table>
@@ -151,16 +146,21 @@
         <h4>New Course</h4>
         <%= form_tag() do %>
           <%= hidden_field_tag(:all_semesters, @all_semesters) %>
-          <%= label_tag(:course_number, "Course Number:") %>
-          <%= text_field_tag(:course_number) %><br/>
-          <%= label_tag(:title, "Title:") %>
-          <%= text_field_tag(:title) %><br/>
-          <%= label_tag(:description, "Description:") %>
-          <%= text_field_tag(:description) %><br/>
-          <%= check_box_tag(:required, true) %>
+          
+          <%= label_tag(:course_number, "Course Number:", class: "control-label") %>
+          <%= number_field_tag(:course_number, 151, min: 100, max: 999, step: 1, class: "form-control") %><br/>
+          
+          <%= label_tag(:title, "Title", class: "control-label") %>
+          <%= text_field_tag(:title, nil, class: "form-control") %><br/>
+          
+          <%= label_tag(:description, "Description:", class: "control-label") %>
+          <%= text_field_tag(:description, nil,  class: "form-control") %><br/>
+          
+          <%= check_box_tag(:required, true, class: "control-label") %>
           <%= label_tag(:required, "Course is required") %><br/>
+          
           <%= hidden_field_tag(:request, "newCourse") %>
-          <%= submit_tag("New Course") %>
+          <%= submit_tag "New Course", class: "btn btn-primary"%>
         <% end %>
         <br/>
 
