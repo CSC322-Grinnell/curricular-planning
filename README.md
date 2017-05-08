@@ -34,7 +34,10 @@
 
 ### Additional Production Environment Configuration
   * By default, Rails will listen on port 3000.
-    * Use `ModProxy` on Apache or similar to forward traffic from existing infrastructure
+    * Use `ModProxy` on Apache or similar to forward traffic from existing infrastructure or 
+    * If you wish to automatically serve from another port 
+        edit line  `default_options_alias.merge!(:Port => 3000)` 
+        in `/config/boot.rb` to specify which port the website should be hosted on 
   * Configure mailer subsystem for user email confirmation: 
     1. in `/config/environments/development.rb` remove: 
     ```
