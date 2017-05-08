@@ -12,12 +12,12 @@ class CourseController < ApplicationController
     setCourse
     
     case params[:request]
-    when "editCourse"
-      flash[:notice] = "Course Saved" if handleEditCourse
+      when "editCourse"
+        flash[:notice] = "Course Saved" if handleEditCourse
     end
-    redirect_to '/course/' + @course.id.to_s
+      redirect_to '/course/' + @course.id.to_s
   end
-  
+
   private
 
   def handleEditCourse

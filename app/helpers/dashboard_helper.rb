@@ -6,10 +6,10 @@ module DashboardHelper
  
     def course_detail_link(course)
         return "/course/" + course.id.to_s
+    end
 
     def offering_detail_link(offering)
         return "/offering/" + offering.id.to_s
     end
-    
 
 end
