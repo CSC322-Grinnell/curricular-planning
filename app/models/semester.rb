@@ -11,7 +11,7 @@ class Semester < ActiveRecord::Base
   end
   
   def getName 
-    return academic_term + " " + academic_year
+    return academic_term + " " + academic_year.to_s + "/" + (academic_year.to_i + 1).to_s[2..3]
   end
   
   def self.getUnarchivedSemesters
