@@ -22,16 +22,18 @@
                 class: 'btn btn-xs ' + (semester.archived ? "btn-warning" : "btn-danger") %>
         </span>
       </div>
-      <table class="table table-hover">
-        <tr>
-          <th>Class</th>
-          <th>Title</th>
-          <th>Professor</th>
-          <th>Time</th>
-          <th>Required?</th>
-          <th>Interest</th>
-          <th>Admin</th>
-        </tr>
+      <table class="table table-hover sortable">
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Title</th>
+            <th>Professor</th>
+            <th>Time</th>
+            <th>Required?</th>
+            <th>Interest</th>
+            <th>Admin</th>
+          </tr>
+        </thead>
         <% semester.offering.each do |offering| %>
         <!--This td statement includes the information for creating a 
             popover displaying the course info above the course name-->

@@ -9,16 +9,18 @@
         <div class="h3 center">
           <%= semester.getName %>
         </div>
-        <table class="table table-hover">
-          <tr>
-            <th>Class</th>
-            <th>Title</th>
-            <th>Professor</th>
-            <th>Time</th>
-            <th>Required?</th>
-            <th>Interest</th>
-            <th>Planning to take?</th>
-          </tr>
+        <table class="table table-hover sortable">
+          <thead>
+            <tr>
+              <th>Class</th>
+              <th>Title</th>
+              <th>Professor</th>
+              <th>Time</th>
+              <th>Required?</th>
+              <th>Interest</th>
+              <th>Planning to take?</th>
+            </tr>
+          </thead>
           <% semester.offering.each do |offering| %>
             <tr>
               
