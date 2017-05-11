@@ -54,3 +54,6 @@ gem 'simplecov', :require => false, :group => :test
 
 # Bootstrap
 gem 'bootstrap-sass'
+
+# To sort HTML tables in th dashboard controllers
+gem 'jquery-turbolinks'

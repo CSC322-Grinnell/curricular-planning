@@ -13,7 +13,7 @@ class DashboardController < ApplicationController
     @semesters = @semesters.order(:academic_year, :academic_term)
     @user = User.current_user
     @selected_offerings = @user.offering
-    @courses = Course.all
+    @courses = Course.order(:course_number)
   end
 
   def post
